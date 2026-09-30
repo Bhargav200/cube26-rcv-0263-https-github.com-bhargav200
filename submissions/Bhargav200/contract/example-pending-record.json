@@ -1,0 +1,197 @@
+{
+  "contract_version": "receiving-evidence/0.2",
+  "stage": "receiving",
+  "record_id": "RCV-2E800639",
+  "unit_id": "UNIT-0003",
+  "org_id": "org_demo_bravo",
+  "status": "pending",
+  "overall": "EXCEPTION",
+  "expected": {
+    "unit_id": "UNIT-0003",
+    "org_id": "org_demo_bravo",
+    "po_number": "PO-7000",
+    "po_line": 4,
+    "supplier": "Supplier Coastal (DUMMY)",
+    "sku": "SKU-PUZZLE-500",
+    "asin": "B0DUMMY729",
+    "product_title": "Jigsaw Puzzle 500pc",
+    "spec_colour": "n/a",
+    "spec_variant": "500pc",
+    "spec_components": [
+      "puzzle pieces",
+      "poster"
+    ],
+    "cartons_ordered": 4,
+    "units_per_carton_ordered": 12,
+    "qty_ordered": 48
+  },
+  "summary": {
+    "cartons_received": 4,
+    "units_per_carton_counted": 11,
+    "qty_received": 44,
+    "identity_match": "uncertain",
+    "carton_damage": "uncertain",
+    "unit_damage": "uncertain",
+    "quality_flags": []
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-PUZZLE-500 · Jigsaw Puzzle 500pc",
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "reason": "No model observation (model unavailable or output invalid); needs review.",
+      "confidence": null
+    },
+    {
+      "name": "variant_colour",
+      "expected": "500pc",
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "reason": "No model observation (model unavailable or output invalid); needs review.",
+      "confidence": null
+    },
+    {
+      "name": "carton_count",
+      "expected": 4,
+      "observed": 4,
+      "source": "operator",
+      "photo_refs": [],
+      "verdict": "PASS",
+      "confidence": "medium",
+      "reason": "Operator counted 4 cartons, 4 ordered. No photo count available."
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 12,
+      "observed": 11,
+      "source": "operator",
+      "photo_refs": [],
+      "verdict": "FAIL",
+      "confidence": "medium",
+      "reason": "Operator counted 11 units per carton, 12 ordered. No photo count available."
+    },
+    {
+      "name": "quantity",
+      "expected": 48,
+      "source": "derived",
+      "photo_refs": [],
+      "observed": 44,
+      "verdict": "FAIL",
+      "reason": "4 cartons × 11 units = 44, 48 ordered (short by 4). Assumes every carton holds the same count as the one that was opened.",
+      "confidence": "medium"
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "reason": "No model observation (model unavailable or output invalid); needs review.",
+      "confidence": null
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "reason": "No model observation (model unavailable or output invalid); needs review.",
+      "confidence": null
+    },
+    {
+      "name": "components",
+      "expected": [
+        "puzzle pieces",
+        "poster"
+      ],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "reason": "No model observation (model unavailable or output invalid); needs review.",
+      "confidence": null
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "reason": "No model observation (model unavailable or output invalid); needs review.",
+      "confidence": null
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "carton",
+      "ref": "runs/smoke/unit.jpg",
+      "sha256": "0e9125eb27ea393e70d239e151d666f05b89f0922f029b443c11b9ac03d245ea"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": 4,
+    "units_per_carton_counted": 11
+  },
+  "operator_id": "op_dana",
+  "captured_at": "2026-09-30T17:58:31.096Z",
+  "model": {
+    "provider": "gemini",
+    "model": "gemini-2.5-flash",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "latency_ms": 0,
+    "error": "GEMINI_API_KEY is not set",
+    "raw_output": null
+  },
+  "issues": [
+    {
+      "check": "units_per_carton",
+      "verdict": "FAIL",
+      "detail": "Operator counted 11 units per carton, 12 ordered. No photo count available."
+    },
+    {
+      "check": "quantity",
+      "verdict": "FAIL",
+      "detail": "4 cartons × 11 units = 44, 48 ordered (short by 4). Assumes every carton holds the same count as the one that was opened."
+    },
+    {
+      "check": "identity",
+      "verdict": "UNCERTAIN",
+      "detail": "No model observation (model unavailable or output invalid); needs review."
+    },
+    {
+      "check": "variant_colour",
+      "verdict": "UNCERTAIN",
+      "detail": "No model observation (model unavailable or output invalid); needs review."
+    },
+    {
+      "check": "carton_damage",
+      "verdict": "UNCERTAIN",
+      "detail": "No model observation (model unavailable or output invalid); needs review."
+    },
+    {
+      "check": "unit_damage",
+      "verdict": "UNCERTAIN",
+      "detail": "No model observation (model unavailable or output invalid); needs review."
+    },
+    {
+      "check": "components",
+      "verdict": "UNCERTAIN",
+      "detail": "No model observation (model unavailable or output invalid); needs review."
+    },
+    {
+      "check": "defects",
+      "verdict": "UNCERTAIN",
+      "detail": "No model observation (model unavailable or output invalid); needs review."
+    }
+  ],
+  "content_hash": "9d960f5ae776e0e4a9764dbcc11f37e996acb392a7befdc48c3fe5d6f21b131f"
+}

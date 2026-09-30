@@ -1,0 +1,399 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "receiving-evidence/0.2",
+  "title": "Receiving Manager evidence record",
+  "description": "One record per unit inspected at supplier delivery. Join key across all five managers: unit_id. `summary` uses the vocabulary of the organisers' receiving_sample.csv. Draft v0.2 (adds checks[].confidence and issues[]), not yet agreed with other pods.",
+  "type": "object",
+  "required": [
+    "contract_version",
+    "stage",
+    "record_id",
+    "unit_id",
+    "org_id",
+    "status",
+    "overall",
+    "expected",
+    "summary",
+    "issues",
+    "checks",
+    "photos",
+    "operator_counts",
+    "operator_id",
+    "captured_at",
+    "model",
+    "content_hash"
+  ],
+  "properties": {
+    "contract_version": {
+      "const": "receiving-evidence/0.2"
+    },
+    "stage": {
+      "const": "receiving"
+    },
+    "record_id": {
+      "type": "string",
+      "pattern": "^RCV-"
+    },
+    "unit_id": {
+      "type": "string",
+      "description": "Chain-wide unit id, e.g. UNIT-0001"
+    },
+    "org_id": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "complete",
+        "pending"
+      ],
+      "description": "pending = the model call failed; the capture was saved anyway (fail open) and visual checks are UNCERTAIN"
+    },
+    "overall": {
+      "enum": [
+        "ACCEPT",
+        "EXCEPTION",
+        "REVIEW"
+      ],
+      "description": "ACCEPT only if every check is PASS; any FAIL gives EXCEPTION; otherwise any UNCERTAIN gives REVIEW"
+    },
+    "expected": {
+      "type": "object",
+      "description": "The PO line and agreed spec the delivery was checked against",
+      "required": [
+        "unit_id",
+        "org_id",
+        "po_number",
+        "po_line",
+        "supplier",
+        "sku",
+        "asin",
+        "product_title",
+        "spec_colour",
+        "spec_variant",
+        "spec_components",
+        "cartons_ordered",
+        "units_per_carton_ordered",
+        "qty_ordered"
+      ],
+      "properties": {
+        "unit_id": {
+          "type": "string"
+        },
+        "org_id": {
+          "type": "string"
+        },
+        "po_number": {
+          "type": "string"
+        },
+        "po_line": {
+          "type": "integer"
+        },
+        "supplier": {
+          "type": "string"
+        },
+        "sku": {
+          "type": "string"
+        },
+        "asin": {
+          "type": "string"
+        },
+        "product_title": {
+          "type": "string"
+        },
+        "spec_colour": {
+          "type": "string"
+        },
+        "spec_variant": {
+          "type": "string"
+        },
+        "spec_components": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cartons_ordered": {
+          "type": "integer"
+        },
+        "units_per_carton_ordered": {
+          "type": "integer"
+        },
+        "qty_ordered": {
+          "type": "integer"
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "description": "CSV-compatible summary derived from checks. Null counts mean UNCERTAIN.",
+      "required": [
+        "cartons_received",
+        "units_per_carton_counted",
+        "qty_received",
+        "identity_match",
+        "carton_damage",
+        "unit_damage",
+        "quality_flags"
+      ],
+      "properties": {
+        "cartons_received": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "units_per_carton_counted": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "qty_received": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "identity_match": {
+          "enum": [
+            "yes",
+            "no",
+            "uncertain"
+          ]
+        },
+        "carton_damage": {
+          "type": "string",
+          "description": "none | uncertain | ';'-joined subset of crushing, water, tears (or 'unspecified')"
+        },
+        "unit_damage": {
+          "type": "string"
+        },
+        "quality_flags": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "wrong_colour",
+              "wrong_variant",
+              "missing_components",
+              "obvious_defect"
+            ]
+          }
+        }
+      }
+    },
+    "issues": {
+      "type": "array",
+      "description": "One entry per check that is not PASS: FAILs first, then UNCERTAINs. Derived from checks, never set directly. What a receiving lead or Recovery acts on.",
+      "items": {
+        "type": "object",
+        "required": [
+          "check",
+          "verdict",
+          "detail"
+        ],
+        "properties": {
+          "check": {
+            "enum": [
+              "identity",
+              "variant_colour",
+              "carton_count",
+              "units_per_carton",
+              "quantity",
+              "carton_damage",
+              "unit_damage",
+              "components",
+              "defects"
+            ]
+          },
+          "verdict": {
+            "enum": [
+              "FAIL",
+              "UNCERTAIN"
+            ]
+          },
+          "detail": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "verdict",
+          "confidence",
+          "expected",
+          "observed",
+          "source",
+          "photo_refs",
+          "reason"
+        ],
+        "properties": {
+          "name": {
+            "enum": [
+              "identity",
+              "variant_colour",
+              "carton_count",
+              "units_per_carton",
+              "quantity",
+              "carton_damage",
+              "unit_damage",
+              "components",
+              "defects"
+            ]
+          },
+          "verdict": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "UNCERTAIN"
+            ]
+          },
+          "confidence": {
+            "enum": [
+              "high",
+              "medium",
+              "low",
+              null
+            ],
+            "description": "Fixed rule, not a model probability. high = operator count confirmed by photo count; medium = one direct source (operator count, or model on a good photo); low = model-only count, or a FAIL kept from a poor photo; null = verdict is UNCERTAIN."
+          },
+          "expected": {},
+          "observed": {},
+          "source": {
+            "enum": [
+              "model",
+              "operator",
+              "derived",
+              "none"
+            ],
+            "description": "Where the observed value came from"
+          },
+          "photo_refs": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "description": "Indexes into photos[]"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "photos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "index",
+          "role",
+          "ref",
+          "sha256"
+        ],
+        "properties": {
+          "index": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "role": {
+            "enum": [
+              "pallet",
+              "carton",
+              "unit",
+              "label",
+              "other"
+            ]
+          },
+          "ref": {
+            "type": "string",
+            "description": "Storage path {org_id}/{uuid}.{jpg|png|webp} (private; fetch via signed URL)"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "operator_counts": {
+      "type": "object",
+      "description": "Counts the operator typed at the dock (null = not entered). Inputs, kept so the checks can be re-derived and a retry can replay them.",
+      "required": [
+        "cartons_received",
+        "units_per_carton_counted"
+      ],
+      "properties": {
+        "cartons_received": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "units_per_carton_counted": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      }
+    },
+    "operator_id": {
+      "type": "string"
+    },
+    "captured_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "model": {
+      "type": "object",
+      "required": [
+        "provider",
+        "model",
+        "prompt_version",
+        "latency_ms",
+        "error",
+        "raw_output"
+      ],
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "model": {
+          "type": "string"
+        },
+        "prompt_version": {
+          "type": "string"
+        },
+        "latency_ms": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "error": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "raw_output": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "content_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "sha256 of the canonical JSON (keys sorted) of every other field. A content hash, not a tamper-proof seal."
+    }
+  }
+}
