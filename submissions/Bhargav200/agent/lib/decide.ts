@@ -13,6 +13,7 @@ import { isPlaceholder, matchColour, matchIdentity, matchVariant, missingCompone
 //                                       EXCEPTIONs go to a human anyway.
 //  - Operator and photo counts differ → UNCERTAIN (conflicting evidence is insufficient evidence).
 //  - Self-contradictory model output  → UNCERTAIN.
+//  - Only packaging described (no product visible) → identity UNCERTAIN, never a wrong-SKU FAIL (F7).
 //  - "No damage" on a carton or unit that isn't in the photos → UNCERTAIN (failure mode F3: on a
 //    photo of a bare bottle LLaVA answered carton damage "none", which read as a carton PASS).
 
@@ -48,7 +49,9 @@ function identityCheck(po: PoLine, obs: Observation | null): Draft {
       ? `Seen "${obs.product_type}"; shares "${m.shared.join(", ")}" with the PO line.`
       : m.status === "mismatch"
         ? `Seen "${obs.product_type}" (${obs.product_description}); no product word in common with "${po.product_title}".`
-        : "The model couldn't tell what the product is.";
+        : m.packagingOnly
+          ? `Only packaging was seen ("${obs.product_type}"); the product itself isn't visible and no label names it.`
+          : "The model couldn't tell what the product is.";
   return { ...base, verdict: statusVerdict(m.status), observed: obs.product_type, source: "model", photo_refs: obs.product_photos, reason };
 }
 

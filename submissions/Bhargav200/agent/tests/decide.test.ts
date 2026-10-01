@@ -216,3 +216,12 @@ describe("F3: no vouching for what isn't in the photos", () => {
     expect(v(decide(po, goodObs({ cartons_visible: null, carton_damage: "damaged", carton_damage_types: ["tears"] }), {}, ["unit"]), "carton_damage")).toBe("FAIL");
   });
 });
+
+describe("F7 in the decision", () => {
+  it("closed carton described as packaging → identity UNCERTAIN with a reason that says so", () => {
+    const c = decide(po, goodObs({ product_type: "cardboard carton", product_description: "a closed shipping carton", label_text: null })).find((x) => x.name === "identity")!;
+    expect(c.verdict).toBe("UNCERTAIN");
+    expect(c.reason).toMatch(/Only packaging was seen/);
+  });
+});
+

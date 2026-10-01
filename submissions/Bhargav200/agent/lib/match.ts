@@ -53,15 +53,40 @@ function productWords(s: string | null | undefined): string[] {
 export interface IdentityMatch {
   status: MatchStatus;
   shared: string[];
+  /** The model described only packaging ("cardboard carton", "small boxes"), not the product. */
+  packagingOnly: boolean;
+}
+
+// Words that describe the outside of goods (packaging, quantity, look) rather than what the
+// product is. Failure mode F7: on closed cartons the model answered product_type "cardboard
+// carton" or "small boxes", which shares no word with any PO title and so read as a wrong SKU.
+// Entries are in the singular form `words()` produces ("boxes" → "boxe").
+const PACKAGING = new Set([
+  "boxe", "boxed", "cardboard", "corrugated", "shipping", "shipper", "parcel", "packed", "mailer",
+  "envelope", "container", "wrap", "wrapped", "wrapping", "master", "outer", "inner", "small", "large",
+  "big", "sealed", "open", "opened", "closed", "multiple", "several", "stack", "stacked", "pile",
+  "bundle", "pallet", "tape", "taped", "barcode", "sticker", "goods", "merchandise", "contents",
+]);
+
+/** True when a description names only packaging, e.g. "cardboard carton", "small boxed items", "box". */
+export function isPackagingOnly(type: string): boolean {
+  return productWords(type).every((w) => PACKAGING.has(w));
 }
 
 /** Is what the model saw the product on the PO line? Match on shared product words. */
 export function matchIdentity(productTitle: string, sku: string, seen: { type: string; description: string; label: string | null }): IdentityMatch {
-  if (isPlaceholder(seen.type)) return { status: "unknown", shared: [] };
+  if (isPlaceholder(seen.type)) return { status: "unknown", shared: [], packagingOnly: false };
   const expected = new Set([...productWords(productTitle), ...productWords(sku.replace(/^SKU-/i, ""))]);
+  if (isPackagingOnly(seen.type)) {
+    // Only the outside was seen. A printed label can still name the product and confirm it;
+    // nothing seen can prove it's the wrong product, so there is no mismatch from packaging.
+    const onLabel = new Set(productWords(seen.label).filter((w) => !PACKAGING.has(w)));
+    const shared = [...expected].filter((w) => onLabel.has(w));
+    return { status: shared.length ? "match" : "unknown", shared, packagingOnly: true };
+  }
   const observed = new Set(productWords(`${seen.type} ${seen.description} ${seen.label ?? ""}`));
   const shared = [...expected].filter((w) => observed.has(w));
-  return { status: shared.length ? "match" : "mismatch", shared };
+  return { status: shared.length ? "match" : "mismatch", shared, packagingOnly: false };
 }
 
 function colourFamilies(s: string | null | undefined): Set<number> {

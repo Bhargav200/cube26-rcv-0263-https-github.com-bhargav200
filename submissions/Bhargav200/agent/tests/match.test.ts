@@ -49,3 +49,25 @@ describe("missingComponents", () => {
     expect(missingComponents(["candle x3", "gift box"], ["candles"])).toEqual(["gift box"]);
   });
 });
+
+describe("F7: packaging is not the product", () => {
+  const seen = (type: string, label: string | null = null) => ({ type, description: `${type} on a table`, label });
+
+  it.each(["cardboard carton", "small boxes", "boxed items", "small boxed items", "box", "sealed parcel"])(
+    '"%s" → unknown, never a wrong-SKU mismatch',
+    (type) => {
+      const m = matchIdentity("Phone Charger 20W", "SKU-CHARGER-20W", seen(type));
+      expect(m).toMatchObject({ status: "unknown", packagingOnly: true });
+    },
+  );
+
+  it("a printed label naming the product still confirms it", () => {
+    expect(matchIdentity("Phone Charger 20W", "SKU-CHARGER-20W", seen("cardboard carton", "USB-C Charger 20W")).status).toBe("match");
+  });
+
+  it("a real product description is still judged (F1 regression stays a mismatch)", () => {
+    expect(matchIdentity("Cotton Bath Towel", "SKU-TOWEL-BLU", seen("water bottle")).status).toBe("mismatch");
+    expect(matchIdentity("Kitchen Blender", "SKU-BLENDER", seen("pet supplies")).status).toBe("mismatch");
+  });
+});
+
