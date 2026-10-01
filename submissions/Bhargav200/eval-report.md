@@ -1,6 +1,6 @@
 # Eval report: Receiving Manager
 
-> **Status: held-out run done on 16 of 20 cases (2026-10-01), plus a second run after fixing the worst failure mode.** Held-out results in §3, before/after in §3b, named failure modes in §4. EV17–EV20 (the owner's own photos) are not in these runs. The results section below is filled from `eval/results/<run>/results.md`, which the harness generates. Nothing in this report is typed in by hand from memory.
+> **Status: held-out run done on 16 of 20 cases (2026-10-01), plus a second run after fixing the worst failure mode.** Held-out results in §3, before/after in §3b, named failure modes in §4. The results section below is filled from `eval/results/<run>/results.md`, which the harness generates. Nothing in this report is typed in by hand from memory.
 
 ## 1. What is being measured
 
@@ -8,22 +8,22 @@ Whether the agent's **per-check verdicts on photos it has never seen** match wha
 
 ## 2. Method
 
-**Eval set.** 20 cases built from real photos the agent has never seen. The agent, prompt and matching rules were frozen before any eval photo was run (prompt `rcv-prompt/0.2-blind`, contract `receiving-evidence/0.2`, model `gemini-3.5-flash-lite`). None of these photos was used while building or tuning.
+**Eval set.** 16 cases built from 13 real photos the agent has never seen. The agent, prompt and matching rules were frozen before any eval photo was run (prompt `rcv-prompt/0.2-blind`, contract `receiving-evidence/0.2`, model `gemini-3.5-flash-lite`). None of these photos was used while building or tuning.
 
-- **EV01–EV16: real delivery photos contributed by neighbours** (13 unique photos), published here with their permission. They were taken by different people, with different phones, light and backgrounds, which is closer to a real dock than one person's staged set. One submitted photo was a duplicate (the same picture re-saved), found by image fingerprint and removed. A few copies carry a small website watermark ("şikayetvar") from where they had been posted; the images are otherwise unedited, only converted to JPEG. These photos come with **no real purchase order**, so each case's PO line in `eval/cases.csv` was written to fit the scenario, e.g. a "Phone Charger 20W" line expecting 9 per carton for the box marked QTY 9.
-- **EV17–EV20: the owner's own phone photos** for the scenarios the contributed set doesn't cover: a clean correct shipment, a missing part, a size on a label, a blurred photo. Shot list: [eval/SHOT-LIST.md](eval/SHOT-LIST.md).
+- **Real delivery photos contributed by neighbours**, published here with their permission. They were taken by different people, with different phones, light and backgrounds, which is closer to a real dock than one person's staged set. One submitted photo was a duplicate (the same picture re-saved), found by image fingerprint and removed. A few copies carry a small website watermark ("şikayetvar") from where they had been posted; the images are otherwise unedited, only converted to JPEG. These photos come with **no real purchase order**, so each case's PO line in `eval/cases.csv` was written to fit the scenario, e.g. a "Phone Charger 20W" line expecting 9 per carton for the box marked QTY 9.
+- **Not covered:** the owner's own extra shots (a clean correct shipment end to end, a missing part, a blurred photo) were dropped to meet the deadline. **Missing components** and **bad photo** are therefore tested only by the unit tests, not by this eval. Details: [eval/SHOT-LIST.md](eval/SHOT-LIST.md).
 
 | Scenario (portal list) | Cases |
 |---|---|
-| Correct shipment / correct product and size | EV02, EV17, EV19 |
+| Correct product and size | EV02 |
 | Wrong SKU | EV03 |
 | Wrong variant (size) | EV04 |
 | Correct count / short shipment (photo count) | EV07 / EV08 |
 | Crushed carton | EV06, EV09, EV16 |
 | Water-damaged carton | EV10, EV14 |
 | Torn packaging (carton / unit) | EV05, EV12, EV15 / EV01 |
-| Missing components | EV18 |
-| Ambiguous (unclear stain, hidden units, bad photo) | EV11, EV13, EV20 |
+| Missing components | **not covered** (unit tests only) |
+| Ambiguous (unclear stain, hidden units) | EV11, EV13 |
 
 EV03, EV04 and EV08 reuse another case's photo against a different PO line. That is how those errors happen at a real dock: the right-looking goods are booked against the wrong line. It does mean those cases aren't independent photos, and the counts below should be read with that in mind. The set is **damage-heavy**: most contributed photos show a damaged carton with the product inside not visible, so `identity`, `components` and the counts are often labelled UNCERTAIN. Those cases test whether the agent declines to judge what it can't see.
 
@@ -57,7 +57,7 @@ Source: [eval/results/gemini-3.5-flash-lite-1/results.md](eval/results/gemini-3.
 | | |
 |---|---|
 | Model | `gemini-3.5-flash-lite`, prompt `rcv-prompt/0.2-blind`, contract `receiving-evidence/0.2` |
-| Cases | 16 of 20 run and scored (EV01–EV16, the neighbour photos). EV17–EV20 not captured at the time of this run. |
+| Cases | 16 of 16 run and scored |
 | Labellers | 1 (owner, from an AI-drafted first pass, see §2). No agreement figure is claimed. |
 | Model failures | 0 pending; 0 retries needed |
 | Latency per unit | median 4.3 s, p90 5.2 s, max 7.7 s |
@@ -130,7 +130,7 @@ Smoke check on 2026-09-30 (the dev bottle photo, 2 cases, local `llava`, **not**
 
 ## 5. Known limits of this eval
 
-- It is small (20 cases, 13 contributed photos + the owner's shots), and 3 cases reuse another case's photo. It can show large failure modes, but it can't give a production accuracy figure.
+- It is small (16 cases from 13 photos), and 3 cases reuse another case's photo. It can show large failure modes, but it can't give a production accuracy figure.
 - The contributed photos have no real purchase order: the PO lines were written to fit each scenario. So identity results test the matcher against a plausible order, not against a real supplier's catalogue. The brief's open question, whether vision works on long-tail catalogues without per-SKU training, is only touched here, not answered.
 - The contributed set is damage-heavy and mostly shows closed or damaged cartons, so identity, components and counts are often labelled UNCERTAIN. Those cases measure whether the agent declines to judge, more than whether it identifies products.
 - The labellers didn't stage the contributed damage, so borderline cases (EV11's stain, EV13's hidden units) are labelled from the photo alone, like an operator would see them. Labeller A's labels started from an AI-drafted first pass, disclosed in §2.

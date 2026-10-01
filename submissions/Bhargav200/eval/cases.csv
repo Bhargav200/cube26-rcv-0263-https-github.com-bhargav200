@@ -15,7 +15,3 @@ EV13,hard count: top layer only (PO expects 20),carton=nb11_open-carton-white-bo
 EV14,water damage inside an open carton,carton=nb12_box-inside-water.jpg,LED Desk Lamp,SKU-LAMP-LED,n/a,standard,lamp;usb cable,1,1,,,neighbour photo #12
 EV15,carton ripped open with contents exposed,carton=nb13_box-ripped-open.jpg,Wool Blanket,SKU-BLANKET-RED,red,queen,blanket,1,1,,,neighbour photo #13
 EV16,carton crushed (HEAVY parcel),carton=nb14_box-crushed-heavy.jpg,Cast Iron Dumbbell 10kg,SKU-DUMBBELL-10,black,10kg,dumbbell,1,1,,,neighbour photo #14
-EV17,correct shipment: clean box with product and parts visible,carton=EV17_carton.jpg;carton=EV17_open.jpg;unit=EV17_unit.jpg,FILL,,,,,1,,,,still to shoot (see SHOT-LIST.md)
-EV18,missing component,unit=EV18_unit.jpg;carton=EV18_open.jpg,FILL,,,,,1,,,,still to shoot
-EV19,right variant: size printed on the label,unit=EV19_unit.jpg;label=EV19_label.jpg,FILL,,,,,1,,,,still to shoot
-EV20,ambiguous: blurred dark photo,carton=EV20_carton.jpg,FILL,,,,,1,,,,still to shoot

@@ -138,4 +138,5 @@
   - Forced identity FAILs went from 6 to 1. Masked failures still 0; carton damage still 9 of 9 with 0 false alarms.
   - Overall exact match went from 15 to 14 of 16, because run 1 got EV07 right only through the F7 false flag. The real miss underneath (F8, punctures) now shows.
   - New: **F10**, the carton's colour read as the product's colour (EV05). **F11**, run-to-run variation (EV01, EV05 changed between identical runs).
+- **Dropped the optional extra cases EV17–EV20** (the owner's own shots) to meet the deadline. The eval is 16 cases from 13 photos. Missing components and bad photo are covered only by unit tests, and the report says so.
 

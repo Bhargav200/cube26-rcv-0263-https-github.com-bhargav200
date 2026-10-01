@@ -170,6 +170,8 @@ The web app is a standard Next.js 16 app. On Vercel:
 2. Add the environment variables from `.env.local`, with `VISION_PROVIDER=gemini` and your `GEMINI_API_KEY`. **Leave out `SUPABASE_SERVICE_ROLE_KEY`**: the web app never uses it (only the seed and RLS-test scripts do), so it shouldn't sit on a public server.
 3. Deploy, then add the URL at the top of this README.
 
+On Vercel a single request is limited to about 4.5 MB, so one inspection's photos must stay under that on the live site (the eval photos are 65–243 KB each). Full-size phone photos work locally.
+
 ## Layout
 
 ```
@@ -203,7 +205,7 @@ submissions/Bhargav200/
 
 | Done | Pending |
 |---|---|
-| Agent: 9 checks, blind model, code decides, fail-open, one call per unit; Gemini 3.5 Flash-Lite as the one default | EV17–EV20 (owner's own photos) to add to the eval |
+| Agent: 9 checks, blind model, code decides, fail-open, one call per unit; Gemini 3.5 Flash-Lite as the one default | Eval cases for missing components and bad photos (covered by unit tests only) |
 | Web app: inspect, record page (issues, confidence, hashes), review queue, overrides | Fixes for F8–F10 (small damage, carton vs product packaging, carton colour) |
 | Supabase with forced RLS; isolation test 12 / 12 on the live project | Deployment (Vercel + Gemini) and its URL above |
 | 87 unit tests; production build passes | Demo video; LinkedIn post (tag CodeQuesters and Sydon.AI) |
