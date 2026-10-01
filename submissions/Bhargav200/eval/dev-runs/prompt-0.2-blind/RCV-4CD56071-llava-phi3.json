@@ -1,0 +1,162 @@
+{
+  "contract_version": "receiving-evidence/0.1",
+  "stage": "receiving",
+  "record_id": "RCV-4CD56071",
+  "unit_id": "UNIT-0001",
+  "org_id": "org_demo_alpha",
+  "status": "complete",
+  "overall": "EXCEPTION",
+  "expected": {
+    "unit_id": "UNIT-0001",
+    "org_id": "org_demo_alpha",
+    "po_number": "PO-7000",
+    "po_line": 2,
+    "supplier": "Supplier East (DUMMY)",
+    "sku": "SKU-TOWEL-BLU",
+    "asin": "B0DUMMY600",
+    "product_title": "Cotton Bath Towel",
+    "spec_colour": "blue",
+    "spec_variant": "bath",
+    "spec_components": [
+      "towel"
+    ],
+    "cartons_ordered": 1,
+    "units_per_carton_ordered": 24,
+    "qty_ordered": 24
+  },
+  "summary": {
+    "cartons_received": 1,
+    "units_per_carton_counted": 1,
+    "qty_received": 1,
+    "identity_match": "no",
+    "carton_damage": "none",
+    "unit_damage": "none",
+    "quality_flags": [
+      "missing_components"
+    ]
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-TOWEL-BLU · Cotton Bath Towel",
+      "verdict": "FAIL",
+      "observed": "water bottle",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "Seen \"water bottle\" (A blue water bottle with a black cap.); no product word in common with \"Cotton Bath Towel\"."
+    },
+    {
+      "name": "variant_colour",
+      "expected": "blue · bath",
+      "verdict": "UNCERTAIN",
+      "observed": "blue · 750ml",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "colour \"blue\" matches blue; variant \"bath\" not confirmed by any label text."
+    },
+    {
+      "name": "carton_count",
+      "expected": 1,
+      "observed": 1,
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "PASS",
+      "reason": "Photos show 1 cartons, 1 ordered. No operator count to cross-check."
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 24,
+      "observed": 1,
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "FAIL",
+      "reason": "Photos show 1 units per carton, 24 ordered. No operator count to cross-check."
+    },
+    {
+      "name": "quantity",
+      "expected": 24,
+      "source": "derived",
+      "photo_refs": [],
+      "observed": 1,
+      "verdict": "FAIL",
+      "reason": "1 cartons × 1 units = 1, 24 ordered (short by 23). Assumes every carton holds the same count as the one that was opened."
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "PASS",
+      "observed": "none",
+      "reason": ""
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "PASS",
+      "observed": "none",
+      "reason": ""
+    },
+    {
+      "name": "components",
+      "expected": [
+        "towel"
+      ],
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "observed": [
+        "cap"
+      ],
+      "verdict": "FAIL",
+      "reason": "Opened unit shown, but not seen: towel. Seen: cap."
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "PASS",
+      "observed": "none",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "No obvious defects seen."
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "unit",
+      "ref": "runs/smoke/unit.jpg",
+      "sha256": "0e9125eb27ea393e70d239e151d666f05b89f0922f029b443c11b9ac03d245ea"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": null,
+    "units_per_carton_counted": null
+  },
+  "operator_id": "op_cli",
+  "captured_at": "2026-09-28T08:43:07.575Z",
+  "model": {
+    "provider": "ollama",
+    "model": "llava-phi3",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "latency_ms": 330823,
+    "error": null,
+    "raw_output": "{\n\"photo_quality\": \"good\",\n\"photo_quality_reason\": \"\",\n\"product_type\": \"water bottle\",\n\"product_description\": \"A blue water bottle with a black cap.\",\n\"product_photos\": [1],\n\"colour_seen\": \"blue\",\n\"label_text\": \"750ml\",\n\"cartons_visible\": 1,\n\"cartons_fully_visible\": true,\n\"units_in_open_carton\": 1,\n\"open_carton_fully_visible\": true,\n\"count_photos\": [1],\n\"carton_damage\": \"none\",\n\"carton_damage_types\": [],\n\"carton_damage_reason\": \"\",\n\"carton_damage_photos\": [1],\n\"unit_damage\": \"none\",\n\"unit_damage_types\": [],\n\"unit_damage_reason\": \"\",\n\"unit_damage_photos\": [1],\n\"opened_unit_visible\": true,\n\"parts_seen\": [\"cap\"],\n\"defect_present\": \"no\"\n\n  ,\n\"defect_description\": \"\"\n\n  ,\n\"defect_photos\": []\n}"
+  },
+  "content_hash": "ff64c6a5c798fffe30652c5d19f93cb7d3ac973e2c440f6ce1079745f8f2b4ae"
+}

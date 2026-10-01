@@ -1,0 +1,172 @@
+{
+  "contract_version": "receiving-evidence/0.1",
+  "stage": "receiving",
+  "record_id": "RCV-C145E479",
+  "unit_id": "UNIT-0001",
+  "org_id": "org_demo_alpha",
+  "status": "complete",
+  "overall": "EXCEPTION",
+  "expected": {
+    "unit_id": "UNIT-0001",
+    "org_id": "org_demo_alpha",
+    "po_number": "PO-7000",
+    "po_line": 2,
+    "supplier": "Supplier East (DUMMY)",
+    "sku": "SKU-TOWEL-BLU",
+    "asin": "B0DUMMY600",
+    "product_title": "Cotton Bath Towel",
+    "spec_colour": "blue",
+    "spec_variant": "bath",
+    "spec_components": [
+      "towel"
+    ],
+    "cartons_ordered": 1,
+    "units_per_carton_ordered": 24,
+    "qty_ordered": 24
+  },
+  "summary": {
+    "cartons_received": 1,
+    "units_per_carton_counted": 24,
+    "qty_received": 24,
+    "identity_match": "yes",
+    "carton_damage": "none",
+    "unit_damage": "none",
+    "quality_flags": [
+      "missing_components"
+    ]
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-TOWEL-BLU · Cotton Bath Towel",
+      "verdict": "PASS",
+      "observed": "yes",
+      "source": "model",
+      "photo_refs": [
+        1,
+        2
+      ],
+      "reason": "The product in the photo matches the SKU, color, variant, and components per unit as specified on the purchase order line."
+    },
+    {
+      "name": "variant_colour",
+      "expected": "blue · bath",
+      "verdict": "PASS",
+      "observed": "blue · bath",
+      "source": "model",
+      "photo_refs": [
+        1,
+        2
+      ],
+      "reason": "The variant 'bath' is visible on the product in the photo."
+    },
+    {
+      "name": "carton_count",
+      "expected": 1,
+      "observed": 1,
+      "source": "model",
+      "photo_refs": [
+        1,
+        2
+      ],
+      "verdict": "PASS",
+      "reason": "Photos show 1 cartons, 1 ordered. No operator count to cross-check."
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 24,
+      "observed": 24,
+      "source": "model",
+      "photo_refs": [
+        1,
+        2
+      ],
+      "verdict": "PASS",
+      "reason": "Photos show 24 units per carton, 24 ordered. No operator count to cross-check."
+    },
+    {
+      "name": "quantity",
+      "expected": 24,
+      "source": "derived",
+      "photo_refs": [],
+      "observed": 24,
+      "verdict": "PASS",
+      "reason": "1 cartons × 24 units = 24, 24 ordered. Assumes every carton holds the same count as the one that was opened."
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [
+        1,
+        2
+      ],
+      "verdict": "PASS",
+      "observed": "none",
+      "reason": "The cartons in the photo are undamaged."
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [
+        1,
+        2
+      ],
+      "verdict": "PASS",
+      "observed": "none",
+      "reason": "The units in the photo appear to be undamaged."
+    },
+    {
+      "name": "components",
+      "expected": [
+        "towel"
+      ],
+      "source": "model",
+      "photo_refs": [
+        1,
+        2
+      ],
+      "observed": [
+        "towel"
+      ],
+      "verdict": "FAIL",
+      "reason": "Missing: none."
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "PASS",
+      "observed": "none",
+      "source": "model",
+      "photo_refs": [
+        1,
+        2
+      ],
+      "reason": "There are no obvious defects visible in the photo."
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "unit",
+      "ref": "runs/smoke/unit.jpg",
+      "sha256": "0e9125eb27ea393e70d239e151d666f05b89f0922f029b443c11b9ac03d245ea"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": null,
+    "units_per_carton_counted": null
+  },
+  "operator_id": "op_cli",
+  "captured_at": "2026-09-28T07:34:56.921Z",
+  "model": {
+    "provider": "ollama",
+    "model": "llava",
+    "prompt_version": "rcv-prompt/0.1",
+    "latency_ms": 420548,
+    "error": null,
+    "raw_output": "{\"photo_quality\": \"good\",\n\"photo_quality_reason\": \"The photo is clear and well-lit.\",\n\"product_seen\": \"yes\",\n\"product_matches_po\": \"yes\",\n\"product_reason\": \"The product in the photo matches the SKU, color, variant, and components per unit as specified on the purchase order line.\",\n\"product_photos\": [\n 1,\n  2\n],\n\"colour_seen\": \"blue\",\n\"colour_matches_spec\": \"yes\",\n\"variant_text_seen\": \"bath\",\n\"variant_matches_spec\": \"yes\",\n\"variant_reason\": \"The variant 'bath' is visible on the product in the photo.\",\n\"cartons_visible\": 1,\n\"cartons_fully_visible\": true,\n\"units_in_open_carton\": 24,\n\"open_carton_fully_visible\": true,\n\"count_photos\": [\n  1,\n  2\n],\n\"carton_damage\": \"none\",\n\"carton_damage_types\": [],\n\"carton_damage_reason\": \"The cartons in the photo are undamaged.\",\n\"carton_damage_photos\": [\n  1,\n  2\n],\n\"unit_damage\": \"none\",\n\"unit_damage_types\": [],\n\"unit_damage_reason\": \"The units in the photo appear to be undamaged.\",\n\"unit_damage_photos\": [\n  1,\n  2\n],\n\"components_seen\": [\"towel\"],\n\"components_missing\": [\"none\"],\n\"components_judgeable\": true,\n\"defect_present\": \"no\",\n\"defect_description\": \"There are no obvious defects visible in the photo.\"\n\n,\"defect_photos\": [\n  1,\n  2\n]} "
+  },
+  "content_hash": "ab9c758646bbd91b59469c591a0a7126ad34d4acf1362a75c4940bde395df9b3"
+}

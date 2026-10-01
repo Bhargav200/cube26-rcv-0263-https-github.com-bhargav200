@@ -1,0 +1,144 @@
+{
+  "contract_version": "receiving-evidence/0.1",
+  "stage": "receiving",
+  "record_id": "RCV-A64AA151",
+  "unit_id": "UNIT-0001",
+  "org_id": "org_demo_alpha",
+  "status": "pending",
+  "overall": "REVIEW",
+  "expected": {
+    "unit_id": "UNIT-0001",
+    "org_id": "org_demo_alpha",
+    "po_number": "PO-7000",
+    "po_line": 2,
+    "supplier": "Supplier East (DUMMY)",
+    "sku": "SKU-TOWEL-BLU",
+    "asin": "B0DUMMY600",
+    "product_title": "Cotton Bath Towel",
+    "spec_colour": "blue",
+    "spec_variant": "bath",
+    "spec_components": [
+      "towel"
+    ],
+    "cartons_ordered": 1,
+    "units_per_carton_ordered": 24,
+    "qty_ordered": 24
+  },
+  "summary": {
+    "cartons_received": null,
+    "units_per_carton_counted": null,
+    "qty_received": null,
+    "identity_match": "uncertain",
+    "carton_damage": "uncertain",
+    "unit_damage": "uncertain",
+    "quality_flags": []
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-TOWEL-BLU · Cotton Bath Towel",
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "reason": "No model observation (model unavailable or output invalid); needs review."
+    },
+    {
+      "name": "variant_colour",
+      "expected": "blue · bath",
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "reason": "No model observation (model unavailable or output invalid); needs review."
+    },
+    {
+      "name": "carton_count",
+      "expected": 1,
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No operator count and no reliable photo count for cartons."
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 24,
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No operator count and no reliable photo count for units per carton."
+    },
+    {
+      "name": "quantity",
+      "expected": 24,
+      "source": "derived",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "Total can't be derived: carton count or units per carton is uncertain."
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "reason": "No model observation (model unavailable or output invalid); needs review."
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "reason": "No model observation (model unavailable or output invalid); needs review."
+    },
+    {
+      "name": "components",
+      "expected": [
+        "towel"
+      ],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "reason": "No model observation (model unavailable or output invalid); needs review."
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "reason": "No model observation (model unavailable or output invalid); needs review."
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "unit",
+      "ref": "runs/smoke/unit.jpg",
+      "sha256": "0e9125eb27ea393e70d239e151d666f05b89f0922f029b443c11b9ac03d245ea"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": null,
+    "units_per_carton_counted": null
+  },
+  "operator_id": "op_cli",
+  "captured_at": "2026-09-28T08:48:19.111Z",
+  "model": {
+    "provider": "ollama",
+    "model": "llava",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "latency_ms": 306193,
+    "error": "Ollama unreachable at http://127.0.0.1:11434 (fetch failed)",
+    "raw_output": null
+  },
+  "content_hash": "9082d2fd434e62e6a462c971134f4e60ad9a197746bc62cf45eb9d55ffee9f96"
+}
