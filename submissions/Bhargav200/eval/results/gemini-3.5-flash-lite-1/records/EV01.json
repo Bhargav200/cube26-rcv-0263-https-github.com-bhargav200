@@ -1,0 +1,210 @@
+{
+  "contract_version": "receiving-evidence/0.2",
+  "stage": "receiving",
+  "record_id": "RCV-EV01",
+  "unit_id": "EV01",
+  "org_id": "org_eval",
+  "status": "complete",
+  "overall": "EXCEPTION",
+  "expected": {
+    "unit_id": "EV01",
+    "org_id": "org_eval",
+    "po_number": "PO-EVAL",
+    "po_line": 1,
+    "supplier": "Eval set",
+    "sku": "SKU-CEREAL-COCOA",
+    "asin": "n/a",
+    "product_title": "Kellogg's Cocoa Krispies Cereal",
+    "spec_colour": "n/a",
+    "spec_variant": "chocolatey",
+    "spec_components": [
+      "cereal box"
+    ],
+    "cartons_ordered": 1,
+    "units_per_carton_ordered": 1,
+    "qty_ordered": 1
+  },
+  "summary": {
+    "cartons_received": null,
+    "units_per_carton_counted": null,
+    "qty_received": null,
+    "identity_match": "yes",
+    "carton_damage": "tears",
+    "unit_damage": "tears",
+    "quality_flags": [
+      "obvious_defect"
+    ]
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-CEREAL-COCOA · Kellogg's Cocoa Krispies Cereal",
+      "verdict": "PASS",
+      "observed": "cereal box",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "Seen \"cereal box\"; shares \"cocoa, krispy, cereal\" with the PO line.",
+      "confidence": "medium"
+    },
+    {
+      "name": "variant_colour",
+      "expected": "chocolatey",
+      "verdict": "PASS",
+      "observed": "COCOA KRISPIES DELICIOUS CHOCOLATEY FLAVOR POP POP! CRACKLE!",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "label shows \"chocolatey\".",
+      "confidence": "medium"
+    },
+    {
+      "name": "carton_count",
+      "expected": 1,
+      "observed": 1,
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "UNCERTAIN",
+      "reason": "Photos show 1 cartons but not all of them are visible, and there's no operator count.",
+      "confidence": null
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 1,
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No operator count and no reliable photo count for units per carton.",
+      "confidence": null
+    },
+    {
+      "name": "quantity",
+      "expected": 1,
+      "source": "derived",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "Total can't be derived: carton count or units per carton is uncertain.",
+      "confidence": null
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "FAIL",
+      "observed": [
+        "tears"
+      ],
+      "reason": "The cereal carton has a large, jagged tear and hole punched through the front face.",
+      "confidence": "medium"
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "FAIL",
+      "observed": [
+        "tears"
+      ],
+      "reason": "The inner plastic bag containing the cereal appears torn open with loose cereal spilled into the shipping box.",
+      "confidence": "medium"
+    },
+    {
+      "name": "components",
+      "expected": [
+        "cereal box"
+      ],
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "observed": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No unit is shown out of its packaging, so components can't be checked.",
+      "confidence": null
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "FAIL",
+      "observed": "The product packaging is severely torn and compromised with product spilled out.",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "The product packaging is severely torn and compromised with product spilled out.",
+      "confidence": "medium"
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "carton",
+      "ref": "eval/photos/nb01_cereal-box-torn.jpg",
+      "sha256": "1496d7f4d1766b0a24320d12ccb59d42df4e31701c968a3ec15496a598eb51ad"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": null,
+    "units_per_carton_counted": null
+  },
+  "operator_id": "eval",
+  "captured_at": "2026-10-01T09:30:56.934Z",
+  "model": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "latency_ms": 5223,
+    "error": null,
+    "raw_output": "{\n  \"photo_quality\": \"good\",\n  \"photo_quality_reason\": \"The image is clear and clearly shows the damaged carton and its contents.\",\n  \"product_type\": \"cereal box\",\n  \"product_description\": \"A box of Cocoa Krispies cereal with a large tear in the front, showing spilled cereal inside a larger shipping box.\",\n  \"product_photos\": [1],\n  \"colour_seen\": \"brown\",\n  \"label_text\": \"COCOA KRISPIES DELICIOUS CHOCOLATEY FLAVOR POP POP! CRACKLE!\",\n  \"cartons_visible\": 1,\n  \"cartons_fully_visible\": false,\n  \"units_in_open_carton\": null,\n  \"open_carton_fully_visible\": false,\n  \"count_photos\": [1],\n  \"carton_damage\": \"damaged\",\n  \"carton_damage_types\": [\n    \"tears\"\n  ],\n  \"carton_damage_reason\": \"The cereal carton has a large, jagged tear and hole punched through the front face.\",\n  \"carton_damage_photos\": [1],\n  \"unit_damage\": \"damaged\",\n  \"unit_damage_types\": [\n    \"tears\"\n  ],\n  \"unit_damage_reason\": \"The inner plastic bag containing the cereal appears torn open with loose cereal spilled into the shipping box.\",\n  \"unit_damage_photos\": [1],\n  \"opened_unit_visible\": false,\n  \"parts_seen\": [],\n  \"defect_present\": \"yes\",\n  \"defect_description\": \"The product packaging is severely torn and compromised with product spilled out.\",\n  \"defect_photos\": [1]\n}"
+  },
+  "issues": [
+    {
+      "check": "carton_damage",
+      "verdict": "FAIL",
+      "detail": "The cereal carton has a large, jagged tear and hole punched through the front face."
+    },
+    {
+      "check": "unit_damage",
+      "verdict": "FAIL",
+      "detail": "The inner plastic bag containing the cereal appears torn open with loose cereal spilled into the shipping box."
+    },
+    {
+      "check": "defects",
+      "verdict": "FAIL",
+      "detail": "The product packaging is severely torn and compromised with product spilled out."
+    },
+    {
+      "check": "carton_count",
+      "verdict": "UNCERTAIN",
+      "detail": "Photos show 1 cartons but not all of them are visible, and there's no operator count."
+    },
+    {
+      "check": "units_per_carton",
+      "verdict": "UNCERTAIN",
+      "detail": "No operator count and no reliable photo count for units per carton."
+    },
+    {
+      "check": "quantity",
+      "verdict": "UNCERTAIN",
+      "detail": "Total can't be derived: carton count or units per carton is uncertain."
+    },
+    {
+      "check": "components",
+      "verdict": "UNCERTAIN",
+      "detail": "No unit is shown out of its packaging, so components can't be checked."
+    }
+  ],
+  "content_hash": "814b0170ec91b21c927d18fe9237a8afbb12d79e41f0df0f0f9d145ca1c50808"
+}

@@ -1,0 +1,217 @@
+{
+  "contract_version": "receiving-evidence/0.2",
+  "stage": "receiving",
+  "record_id": "RCV-EV09",
+  "unit_id": "EV09",
+  "org_id": "org_eval",
+  "status": "complete",
+  "overall": "EXCEPTION",
+  "expected": {
+    "unit_id": "EV09",
+    "org_id": "org_eval",
+    "po_number": "PO-EVAL",
+    "po_line": 1,
+    "supplier": "Eval set",
+    "sku": "SKU-BLENDER-600",
+    "asin": "n/a",
+    "product_title": "Kitchen Blender 600W",
+    "spec_colour": "n/a",
+    "spec_variant": "600W",
+    "spec_components": [
+      "blender jar",
+      "base",
+      "lid"
+    ],
+    "cartons_ordered": 1,
+    "units_per_carton_ordered": 1,
+    "qty_ordered": 1
+  },
+  "summary": {
+    "cartons_received": null,
+    "units_per_carton_counted": null,
+    "qty_received": null,
+    "identity_match": "no",
+    "carton_damage": "crushing;tears",
+    "unit_damage": "uncertain",
+    "quality_flags": []
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-BLENDER-600 · Kitchen Blender 600W",
+      "verdict": "FAIL",
+      "observed": "cardboard carton",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "Seen \"cardboard carton\" (A brown cardboard shipping carton with a shipping label on the side.); no product word in common with \"Kitchen Blender 600W\".",
+      "confidence": "medium"
+    },
+    {
+      "name": "variant_colour",
+      "expected": "600W",
+      "verdict": "UNCERTAIN",
+      "observed": "no label text",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "variant \"600W\" not confirmed by any label text.",
+      "confidence": null
+    },
+    {
+      "name": "carton_count",
+      "expected": 1,
+      "observed": 1,
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "UNCERTAIN",
+      "reason": "Photos show 1 cartons but not all of them are visible, and there's no operator count.",
+      "confidence": null
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 1,
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No operator count and no reliable photo count for units per carton.",
+      "confidence": null
+    },
+    {
+      "name": "quantity",
+      "expected": 1,
+      "source": "derived",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "Total can't be derived: carton count or units per carton is uncertain.",
+      "confidence": null
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "FAIL",
+      "observed": [
+        "crushing",
+        "tears"
+      ],
+      "reason": "The corner of the carton is severely crushed and the cardboard and tape are torn open.",
+      "confidence": "medium"
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "The contents of the carton are not visible.",
+      "confidence": null
+    },
+    {
+      "name": "components",
+      "expected": [
+        "blender jar",
+        "base",
+        "lid"
+      ],
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "observed": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No unit is shown out of its packaging, so components can't be checked.",
+      "confidence": null
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "UNCERTAIN",
+      "observed": "The contents inside the damaged carton are not visible.",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "The contents inside the damaged carton are not visible.",
+      "confidence": null
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "carton",
+      "ref": "eval/photos/nb06_box-top-torn.jpg",
+      "sha256": "65e50d010db7690fae1fb88db0a6d0943f4229d1baef451b5448f34209a1f97c"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": null,
+    "units_per_carton_counted": null
+  },
+  "operator_id": "eval",
+  "captured_at": "2026-10-01T09:32:28.864Z",
+  "model": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "latency_ms": 4644,
+    "error": null,
+    "raw_output": "{\n  \"photo_quality\": \"good\",\n  \"photo_quality_reason\": \"The photo is clear and in focus, showing the carton and damage in detail.\",\n  \"product_type\": \"cardboard carton\",\n  \"product_description\": \"A brown cardboard shipping carton with a shipping label on the side.\",\n  \"product_photos\": [1],\n  \"colour_seen\": null,\n  \"label_text\": null,\n  \"cartons_visible\": 1,\n  \"cartons_fully_visible\": false,\n  \"units_in_open_carton\": null,\n  \"open_carton_fully_visible\": false,\n  \"count_photos\": [1],\n  \"carton_damage\": \"damaged\",\n  \"carton_damage_types\": [\n    \"crushing\",\n    \"tears\"\n  ],\n  \"carton_damage_reason\": \"The corner of the carton is severely crushed and the cardboard and tape are torn open.\",\n  \"carton_damage_photos\": [1],\n  \"unit_damage\": \"unclear\",\n  \"unit_damage_types\": [],\n  \"unit_damage_reason\": \"The contents of the carton are not visible.\",\n  \"unit_damage_photos\": [],\n  \"opened_unit_visible\": false,\n  \"parts_seen\": [],\n  \"defect_present\": \"unclear\",\n  \"defect_description\": \"The contents inside the damaged carton are not visible.\",\n  \"defect_photos\": []\n}"
+  },
+  "issues": [
+    {
+      "check": "identity",
+      "verdict": "FAIL",
+      "detail": "Seen \"cardboard carton\" (A brown cardboard shipping carton with a shipping label on the side.); no product word in common with \"Kitchen Blender 600W\"."
+    },
+    {
+      "check": "carton_damage",
+      "verdict": "FAIL",
+      "detail": "The corner of the carton is severely crushed and the cardboard and tape are torn open."
+    },
+    {
+      "check": "variant_colour",
+      "verdict": "UNCERTAIN",
+      "detail": "variant \"600W\" not confirmed by any label text."
+    },
+    {
+      "check": "carton_count",
+      "verdict": "UNCERTAIN",
+      "detail": "Photos show 1 cartons but not all of them are visible, and there's no operator count."
+    },
+    {
+      "check": "units_per_carton",
+      "verdict": "UNCERTAIN",
+      "detail": "No operator count and no reliable photo count for units per carton."
+    },
+    {
+      "check": "quantity",
+      "verdict": "UNCERTAIN",
+      "detail": "Total can't be derived: carton count or units per carton is uncertain."
+    },
+    {
+      "check": "unit_damage",
+      "verdict": "UNCERTAIN",
+      "detail": "The contents of the carton are not visible."
+    },
+    {
+      "check": "components",
+      "verdict": "UNCERTAIN",
+      "detail": "No unit is shown out of its packaging, so components can't be checked."
+    },
+    {
+      "check": "defects",
+      "verdict": "UNCERTAIN",
+      "detail": "The contents inside the damaged carton are not visible."
+    }
+  ],
+  "content_hash": "bc030f453f6c11af1e33704ad00f7e5a5cee0f15c6c375c6e509065fadbcae47"
+}

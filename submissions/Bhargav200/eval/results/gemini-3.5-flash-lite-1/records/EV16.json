@@ -1,0 +1,201 @@
+{
+  "contract_version": "receiving-evidence/0.2",
+  "stage": "receiving",
+  "record_id": "RCV-EV16",
+  "unit_id": "EV16",
+  "org_id": "org_eval",
+  "status": "complete",
+  "overall": "EXCEPTION",
+  "expected": {
+    "unit_id": "EV16",
+    "org_id": "org_eval",
+    "po_number": "PO-EVAL",
+    "po_line": 1,
+    "supplier": "Eval set",
+    "sku": "SKU-DUMBBELL-10",
+    "asin": "n/a",
+    "product_title": "Cast Iron Dumbbell 10kg",
+    "spec_colour": "black",
+    "spec_variant": "10kg",
+    "spec_components": [
+      "dumbbell"
+    ],
+    "cartons_ordered": 1,
+    "units_per_carton_ordered": 1,
+    "qty_ordered": 1
+  },
+  "summary": {
+    "cartons_received": 1,
+    "units_per_carton_counted": null,
+    "qty_received": null,
+    "identity_match": "uncertain",
+    "carton_damage": "crushing",
+    "unit_damage": "uncertain",
+    "quality_flags": []
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-DUMBBELL-10 · Cast Iron Dumbbell 10kg",
+      "verdict": "UNCERTAIN",
+      "observed": "unclear",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "The model couldn't tell what the product is.",
+      "confidence": null
+    },
+    {
+      "name": "variant_colour",
+      "expected": "black · 10kg",
+      "verdict": "UNCERTAIN",
+      "observed": "colour not seen · HEAVY LIFT WITH CARE",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "colour not determinable (seen: nothing); variant \"10kg\" not confirmed by any label text.",
+      "confidence": null
+    },
+    {
+      "name": "carton_count",
+      "expected": 1,
+      "observed": 1,
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "PASS",
+      "confidence": "low",
+      "reason": "Photos show 1 cartons, 1 ordered. No operator count to cross-check."
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 1,
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No operator count and no reliable photo count for units per carton.",
+      "confidence": null
+    },
+    {
+      "name": "quantity",
+      "expected": 1,
+      "source": "derived",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "Total can't be derived: carton count or units per carton is uncertain.",
+      "confidence": null
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "FAIL",
+      "observed": [
+        "crushing"
+      ],
+      "reason": "The carton is severely crushed, dented, and structurally deformed.",
+      "confidence": "medium"
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "The contents are not visible inside the closed carton.",
+      "confidence": null
+    },
+    {
+      "name": "components",
+      "expected": [
+        "dumbbell"
+      ],
+      "source": "model",
+      "photo_refs": [],
+      "observed": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No unit is shown out of its packaging, so components can't be checked.",
+      "confidence": null
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "UNCERTAIN",
+      "observed": "Cannot determine product defects as only the exterior of the damaged carton is visible.",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "Cannot determine product defects as only the exterior of the damaged carton is visible.",
+      "confidence": null
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "carton",
+      "ref": "eval/photos/nb14_box-crushed-heavy.jpg",
+      "sha256": "d0192889918b18c6c8596c5148e0cf1c6edba48752919256b3f023453715c98b"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": null,
+    "units_per_carton_counted": null
+  },
+  "operator_id": "eval",
+  "captured_at": "2026-10-01T09:33:50.026Z",
+  "model": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "latency_ms": 3944,
+    "error": null,
+    "raw_output": "{\n  \"photo_quality\": \"good\",\n  \"photo_quality_reason\": \"The image is clear and fully shows the carton.\",\n  \"product_type\": \"unclear\",\n  \"product_description\": \"An unopened and heavily crushed cardboard carton with shipping labels and tape.\",\n  \"product_photos\": [],\n  \"colour_seen\": null,\n  \"label_text\": \"HEAVY LIFT WITH CARE\",\n  \"cartons_visible\": 1,\n  \"cartons_fully_visible\": true,\n  \"units_in_open_carton\": null,\n  \"open_carton_fully_visible\": false,\n  \"count_photos\": [\n    1\n  ],\n  \"carton_damage\": \"damaged\",\n  \"carton_damage_types\": [\n    \"crushing\"\n  ],\n  \"carton_damage_reason\": \"The carton is severely crushed, dented, and structurally deformed.\",\n  \"carton_damage_photos\": [\n    1\n  ],\n  \"unit_damage\": \"unclear\",\n  \"unit_damage_types\": [],\n  \"unit_damage_reason\": \"The contents are not visible inside the closed carton.\",\n  \"unit_damage_photos\": [],\n  \"opened_unit_visible\": false,\n  \"parts_seen\": [],\n  \"defect_present\": \"unclear\",\n  \"defect_description\": \"Cannot determine product defects as only the exterior of the damaged carton is visible.\",\n  \"defect_photos\": []\n}"
+  },
+  "issues": [
+    {
+      "check": "carton_damage",
+      "verdict": "FAIL",
+      "detail": "The carton is severely crushed, dented, and structurally deformed."
+    },
+    {
+      "check": "identity",
+      "verdict": "UNCERTAIN",
+      "detail": "The model couldn't tell what the product is."
+    },
+    {
+      "check": "variant_colour",
+      "verdict": "UNCERTAIN",
+      "detail": "colour not determinable (seen: nothing); variant \"10kg\" not confirmed by any label text."
+    },
+    {
+      "check": "units_per_carton",
+      "verdict": "UNCERTAIN",
+      "detail": "No operator count and no reliable photo count for units per carton."
+    },
+    {
+      "check": "quantity",
+      "verdict": "UNCERTAIN",
+      "detail": "Total can't be derived: carton count or units per carton is uncertain."
+    },
+    {
+      "check": "unit_damage",
+      "verdict": "UNCERTAIN",
+      "detail": "The contents are not visible inside the closed carton."
+    },
+    {
+      "check": "components",
+      "verdict": "UNCERTAIN",
+      "detail": "No unit is shown out of its packaging, so components can't be checked."
+    },
+    {
+      "check": "defects",
+      "verdict": "UNCERTAIN",
+      "detail": "Cannot determine product defects as only the exterior of the damaged carton is visible."
+    }
+  ],
+  "content_hash": "9311e25028cb10cfde6a3fb1620f68b25f727c3547ba448858559ee23f475c21"
+}

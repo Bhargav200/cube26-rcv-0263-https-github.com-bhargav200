@@ -1,0 +1,364 @@
+{
+  "meta": {
+    "run": "gemini-3.5-flash-lite-1",
+    "scored_at": "2026-10-01T09:33:50.065Z",
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "contract_version": "receiving-evidence/0.2",
+    "code_commit": "a3f293f+uncommitted",
+    "cases": 16,
+    "scored_cases": 16,
+    "labellers": 1,
+    "pending": 0,
+    "retried_after_pending": 0,
+    "latency_s": {
+      "median": 4.287,
+      "p90": 5.223,
+      "max": 7.747
+    }
+  },
+  "perCheck": [
+    {
+      "check": "identity",
+      "n": 16,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 3,
+      "abstain_on_pass": 0,
+      "abstain_on_fail": 0,
+      "correct_abstain": 6,
+      "forced": 6,
+      "decided_accuracy": 1,
+      "coverage": 1,
+      "fail_precision": 1,
+      "fail_recall": 1
+    },
+    {
+      "check": "variant_colour",
+      "n": 16,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "tn": 2,
+      "abstain_on_pass": 0,
+      "abstain_on_fail": 0,
+      "correct_abstain": 12,
+      "forced": 0,
+      "decided_accuracy": 1,
+      "coverage": 1,
+      "fail_precision": 1,
+      "fail_recall": 1
+    },
+    {
+      "check": "carton_count",
+      "n": 16,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 4,
+      "abstain_on_pass": 1,
+      "abstain_on_fail": 0,
+      "correct_abstain": 9,
+      "forced": 2,
+      "decided_accuracy": 1,
+      "coverage": 0.8,
+      "fail_precision": null,
+      "fail_recall": null
+    },
+    {
+      "check": "units_per_carton",
+      "n": 16,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 1,
+      "abstain_on_pass": 0,
+      "abstain_on_fail": 0,
+      "correct_abstain": 12,
+      "forced": 2,
+      "decided_accuracy": 1,
+      "coverage": 1,
+      "fail_precision": 1,
+      "fail_recall": 1
+    },
+    {
+      "check": "quantity",
+      "n": 16,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 0,
+      "abstain_on_pass": 0,
+      "abstain_on_fail": 0,
+      "correct_abstain": 14,
+      "forced": 2,
+      "decided_accuracy": null,
+      "coverage": null,
+      "fail_precision": null,
+      "fail_recall": null
+    },
+    {
+      "check": "carton_damage",
+      "n": 16,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "tn": 3,
+      "abstain_on_pass": 0,
+      "abstain_on_fail": 0,
+      "correct_abstain": 3,
+      "forced": 1,
+      "decided_accuracy": 1,
+      "coverage": 1,
+      "fail_precision": 1,
+      "fail_recall": 1
+    },
+    {
+      "check": "unit_damage",
+      "n": 16,
+      "tp": 1,
+      "fp": 0,
+      "fn": 2,
+      "tn": 4,
+      "abstain_on_pass": 0,
+      "abstain_on_fail": 0,
+      "correct_abstain": 9,
+      "forced": 0,
+      "decided_accuracy": 0.7142857142857143,
+      "coverage": 1,
+      "fail_precision": 1,
+      "fail_recall": 0.3333333333333333
+    },
+    {
+      "check": "components",
+      "n": 16,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 0,
+      "abstain_on_pass": 0,
+      "abstain_on_fail": 0,
+      "correct_abstain": 16,
+      "forced": 0,
+      "decided_accuracy": null,
+      "coverage": null,
+      "fail_precision": null,
+      "fail_recall": null
+    },
+    {
+      "check": "defects",
+      "n": 16,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 3,
+      "abstain_on_pass": 0,
+      "abstain_on_fail": 0,
+      "correct_abstain": 9,
+      "forced": 3,
+      "decided_accuracy": 1,
+      "coverage": 1,
+      "fail_precision": 1,
+      "fail_recall": 1
+    }
+  ],
+  "overall": {
+    "n": 16,
+    "exact": 15,
+    "masked_failures": 0,
+    "confusion": {
+      "ACCEPT": {
+        "ACCEPT": 0,
+        "EXCEPTION": 0,
+        "REVIEW": 0
+      },
+      "EXCEPTION": {
+        "ACCEPT": 0,
+        "EXCEPTION": 14,
+        "REVIEW": 0
+      },
+      "REVIEW": {
+        "ACCEPT": 0,
+        "EXCEPTION": 1,
+        "REVIEW": 1
+      }
+    }
+  },
+  "byConfidence": {
+    "high": {
+      "n": 0,
+      "correct": 0
+    },
+    "medium": {
+      "n": 31,
+      "correct": 29
+    },
+    "low": {
+      "n": 6,
+      "correct": 6
+    },
+    "none": {
+      "n": 0,
+      "correct": 0
+    }
+  },
+  "agreement": null,
+  "dropped": [],
+  "misses": [
+    {
+      "case_id": "EV07",
+      "check": "identity",
+      "label": "UNCERTAIN",
+      "agent": "FAIL",
+      "kind": "forced",
+      "reason": "Seen \"small boxes\" (Small cardboard boxes with barcode labels are packed inside a larger open outer carton.); no product word in common with \"Phone Charger 20W\"."
+    },
+    {
+      "case_id": "EV08",
+      "check": "identity",
+      "label": "UNCERTAIN",
+      "agent": "FAIL",
+      "kind": "forced",
+      "reason": "Seen \"small boxed items\" (Multiple small brown cardboard boxes with barcode labels are packed inside a larger open master carton.); no product word in common with \"Phone Charger 20W\"."
+    },
+    {
+      "case_id": "EV09",
+      "check": "identity",
+      "label": "UNCERTAIN",
+      "agent": "FAIL",
+      "kind": "forced",
+      "reason": "Seen \"cardboard carton\" (A brown cardboard shipping carton with a shipping label on the side.); no product word in common with \"Kitchen Blender 600W\"."
+    },
+    {
+      "case_id": "EV11",
+      "check": "identity",
+      "label": "UNCERTAIN",
+      "agent": "FAIL",
+      "kind": "forced",
+      "reason": "Seen \"pet supplies\" (A cardboard shipping carton with blue and brown branding.); no product word in common with \"Dry Dog Food 5kg\"."
+    },
+    {
+      "case_id": "EV13",
+      "check": "identity",
+      "label": "UNCERTAIN",
+      "agent": "FAIL",
+      "kind": "forced",
+      "reason": "Seen \"boxed items\" (An open cardboard shipping box contains multiple smaller white rectangular product boxes packed inside.); no product word in common with \"Smart Plug\"."
+    },
+    {
+      "case_id": "EV14",
+      "check": "identity",
+      "label": "UNCERTAIN",
+      "agent": "FAIL",
+      "kind": "forced",
+      "reason": "Seen \"cardboard carton\" (An open cardboard carton with packaging material inside.); no product word in common with \"LED Desk Lamp\"."
+    },
+    {
+      "case_id": "EV07",
+      "check": "carton_count",
+      "label": "UNCERTAIN",
+      "agent": "PASS",
+      "kind": "forced",
+      "reason": "Photos show 1 cartons, 1 ordered. No operator count to cross-check."
+    },
+    {
+      "case_id": "EV12",
+      "check": "carton_count",
+      "label": "PASS",
+      "agent": "UNCERTAIN",
+      "kind": "abstain",
+      "reason": "Photos show 1 cartons but not all of them are visible, and there's no operator count."
+    },
+    {
+      "case_id": "EV13",
+      "check": "carton_count",
+      "label": "UNCERTAIN",
+      "agent": "PASS",
+      "kind": "forced",
+      "reason": "Photos show 1 cartons, 1 ordered. No operator count to cross-check."
+    },
+    {
+      "case_id": "EV13",
+      "check": "units_per_carton",
+      "label": "UNCERTAIN",
+      "agent": "FAIL",
+      "kind": "forced",
+      "reason": "Photos show 16 units per carton, 20 ordered. No operator count to cross-check."
+    },
+    {
+      "case_id": "EV14",
+      "check": "units_per_carton",
+      "label": "UNCERTAIN",
+      "agent": "FAIL",
+      "kind": "forced",
+      "reason": "Photos show 0 units per carton, 1 ordered. No operator count to cross-check."
+    },
+    {
+      "case_id": "EV07",
+      "check": "quantity",
+      "label": "UNCERTAIN",
+      "agent": "PASS",
+      "kind": "forced",
+      "reason": "1 cartons × 9 units = 9, 9 ordered. Assumes every carton holds the same count as the one that was opened."
+    },
+    {
+      "case_id": "EV13",
+      "check": "quantity",
+      "label": "UNCERTAIN",
+      "agent": "FAIL",
+      "kind": "forced",
+      "reason": "1 cartons × 16 units = 16, 20 ordered (short by 4). Assumes every carton holds the same count as the one that was opened."
+    },
+    {
+      "case_id": "EV01",
+      "check": "carton_damage",
+      "label": "UNCERTAIN",
+      "agent": "FAIL",
+      "kind": "forced",
+      "reason": "The cereal carton has a large, jagged tear and hole punched through the front face."
+    },
+    {
+      "case_id": "EV07",
+      "check": "unit_damage",
+      "label": "FAIL",
+      "agent": "PASS",
+      "kind": "FN",
+      "reason": "No product damage reported by the model."
+    },
+    {
+      "case_id": "EV08",
+      "check": "unit_damage",
+      "label": "FAIL",
+      "agent": "PASS",
+      "kind": "FN",
+      "reason": "No product damage reported by the model."
+    },
+    {
+      "case_id": "EV07",
+      "check": "defects",
+      "label": "UNCERTAIN",
+      "agent": "PASS",
+      "kind": "forced",
+      "reason": "No obvious defects seen."
+    },
+    {
+      "case_id": "EV08",
+      "check": "defects",
+      "label": "UNCERTAIN",
+      "agent": "PASS",
+      "kind": "forced",
+      "reason": "No obvious defects seen."
+    },
+    {
+      "case_id": "EV13",
+      "check": "defects",
+      "label": "UNCERTAIN",
+      "agent": "PASS",
+      "kind": "forced",
+      "reason": "No defects observed."
+    }
+  ],
+  "unlabelled": []
+}
