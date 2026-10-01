@@ -139,4 +139,8 @@
   - Overall exact match went from 15 to 14 of 16, because run 1 got EV07 right only through the F7 false flag. The real miss underneath (F8, punctures) now shows.
   - New: **F10**, the carton's colour read as the product's colour (EV05). **F11**, run-to-run variation (EV01, EV05 changed between identical runs).
 - **Dropped the optional extra cases EV17–EV20** (the owner's own shots) to meet the deadline. The eval is 16 cases from 13 photos. Missing components and bad photo are covered only by unit tests, and the report says so.
+- **Deployed to Vercel**: https://cube26-rcv-0263-https-github-com-bh.vercel.app (root `submissions/Bhargav200/agent`, Node 24, `VISION_PROVIDER=gemini`).
+  - The first import created the project but no deployment, so the address answered `DEPLOYMENT_NOT_FOUND`.
+  - Triggered a production deployment of `main` (43467b3). The build was READY, `/` redirects signed-out users to `/login`, and `/login` renders.
+  - The service-role key is deliberately not on the server.
 

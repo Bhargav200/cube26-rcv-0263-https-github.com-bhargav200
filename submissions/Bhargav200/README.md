@@ -6,7 +6,7 @@ A receiving-inspection agent for supplier deliveries. At the dock an operator ph
 
 | | |
 |---|---|
-| Deployment | _add URL after deploying (see [Deploy](#deploy))_ |
+| Deployment | **https://cube26-rcv-0263-https-github-com-bh.vercel.app** (Vercel, Gemini 3.5 Flash-Lite; sign in as a demo operator) |
 | Demo video | _add link_ |
 | Architecture | [ARCHITECTURE.md](ARCHITECTURE.md) |
 | Eval | [eval-report.md](eval-report.md) · harness and photo set in [eval/](eval/) |
