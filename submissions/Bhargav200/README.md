@@ -207,7 +207,8 @@ submissions/Bhargav200/
 |---|---|
 | Agent: 9 checks, blind model, code decides, fail-open, one call per unit; Gemini 3.5 Flash-Lite as the one default | Eval cases for missing components and bad photos (covered by unit tests only) |
 | Web app: inspect, record page (issues, confidence, hashes), review queue, overrides | Fixes for F8–F10 (small damage, carton vs product packaging, carton colour) |
-| Supabase with forced RLS; isolation test 12 / 12 on the live project | Deployment (Vercel + Gemini) and its URL above |
+| Supabase with forced RLS; isolation test 12 / 12 on the live project | |
+| Deployed on Vercel with Gemini (URL above) | |
 | 87 unit tests; production build passes | Demo video; LinkedIn post (tag CodeQuesters and Sydon.AI) |
 | **Held-out eval, 16 real photos: 0 masked failures, carton damage 9/9 with 0 false alarms, overall 15/16. Worst failure mode (F7) fixed and re-measured: false wrong-SKU flags 6 → 1** | Contract v0.2 agreed with other pods (Round 3) |
 | All docs: README, ARCHITECTURE, eval report, findings, face-1 docs, build log | |

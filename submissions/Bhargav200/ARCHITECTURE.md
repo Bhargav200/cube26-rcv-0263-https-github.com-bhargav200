@@ -70,7 +70,7 @@ One sentence: **a vision model describes the photos without knowing what was ord
 | Input | 1 contact sheet, ≤1536 px, + roles | 1 contact sheet, ≤1024 px, + roles |
 | Output | JSON constrained by the schema (`responseJsonSchema`); room for the model's built-in thinking (32k output tokens) | JSON constrained by the schema (`format`) |
 | Temperature | 0 | 0 |
-| Observed latency | see eval report | 70–420 s per unit on a CPU-only laptop |
+| Observed latency | median 4.3 s, p90 5.2 s, max 7.7 s per unit (held-out eval run 1, 16 cases; see eval report) | 70–420 s per unit on a CPU-only laptop |
 | Failure handling | temporary overload (HTTP 429 / 503) → the same single request is re-sent up to 2 times (2 s, 5 s), within the timeout; then, or on missing key / other HTTP error / blocked / cut off / bad JSON → `pending` | timeout / unreachable / bad JSON → `pending` |
 | Cost / privacy | Free tier; Google may use free-tier content to improve its products | Free; nothing leaves the machine |
 
@@ -130,7 +130,7 @@ Immutability in practice: RLS grants no UPDATE or DELETE on `inspections` or `ov
 ## 7. Tenancy isolation
 
 - Every table has `org_id`, with RLS **enabled and forced**. `is_member(org)` is a `security definer` function that checks `org_members` for `auth.uid()`.
-- Inserts require `is_member(org_id)` and `created_by = auth.uid()`. There are no update or delete policies at all.
+- Inserts into `inspections` and `overrides` require `is_member(org_id)` and `created_by = auth.uid()`. Inserts into `inspection_photos` and the photo bucket require `is_member(org_id)`. There are no update or delete policies at all.
 - The photo bucket is private. Read and insert policies check that the first folder of the object path is an org the user belongs to, and a DB constraint ties `inspection_photos.path` to its `org_id`. Photo names are random UUIDs, not unit IDs, so they can't be guessed.
 - `npm run test:rls` result (2026-09-28, live project): **12 of 12 passed.** Checked: alpha sees only its own rows; bravo sees 0 alpha PO lines and 0 alpha inspections; bravo's insert into alpha is rejected; bravo can't download, sign, list, upload into or publicly fetch an alpha photo even with its exact path; control: alpha can download its own photo.
 
@@ -140,7 +140,7 @@ Immutability in practice: RLS grants no UPDATE or DELETE on `inspections` or `ov
 |---|---|---|
 | Model is blind to the PO | F1: shown the PO, the model echoed it | Identity relies on word matching, and synonyms are missed |
 | Code decides, model describes | Verdicts are explainable and testable without a model | The matcher is simple on purpose; its misses are measured |
-| Operator counts beat photo counts | F2: LLaVA invented a carton | Operators still type counts for high confidence |
+| Operator counts beat photo counts | F2: llava-phi3 invented a carton | Operators still type counts for high confidence |
 | One contact sheet per unit | Rule 2; small models handle one image better | Lower resolution per photo |
 | Fail open to `pending` | Rule 3: the dock never waits | Pending records need a retry |
 | Poor photo: PASS → UNCERTAIN, FAIL kept | Don't vouch for what you couldn't see; don't hide a visible problem | More REVIEWs |
