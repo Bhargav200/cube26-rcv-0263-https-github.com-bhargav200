@@ -1,3 +1,11 @@
+> **Submission by [@Bhargav200](https://github.com/Bhargav200): Receiving Manager (seat 34).** Everything I built is in [`submissions/Bhargav200/`](submissions/Bhargav200/):
+> [README](submissions/Bhargav200/README.md) (setup, usage, assumptions, limitations) ·
+> [ARCHITECTURE](submissions/Bhargav200/ARCHITECTURE.md) ·
+> [Eval report](submissions/Bhargav200/eval-report.md) ·
+> [Findings](submissions/Bhargav200/FINDINGS.md) ·
+> [Code](submissions/Bhargav200/agent/).
+> The rest of this file is the organisers' problem statement, unchanged.
+
 # Cube Buildathon · 01 · Receiving Manager
 
 **Commerce Context stream · Round 2 · Individual Build**
