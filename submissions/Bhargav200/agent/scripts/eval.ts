@@ -1,7 +1,8 @@
 // Eval runner: runs the agent on the held-out photo set and scores it against human labels.
 //
-//   npm run eval -- --provider gemini                 # run every case, then score
-//   npm run eval -- --provider ollama --run my-run    # resumable: cases already in the run are skipped
+//   npm run eval                                      # default model (Gemini): run every case, then score
+//   npm run eval -- --run my-run                      # resumable: finished cases are skipped, pending ones retried
+//                                                     (the pending attempt is kept in records/attempts/)
 //   npm run eval -- --score-only --run my-run         # rescore after editing labels, no model calls
 //   npm run eval -- --only EV01,EV02 --provider gemini
 //   npm run eval -- --dir some/other/eval/folder      # same layout elsewhere (used for smoke tests)
@@ -15,7 +16,7 @@
 import { config } from "dotenv";
 config({ path: ".env.local" });
 import { execSync } from "node:child_process";
-import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { parseArgs } from "node:util";
 import { parse } from "csv-parse/sync";
@@ -119,7 +120,7 @@ async function main() {
   const cases = all.filter((r) => r.product_title && r.product_title !== "FILL");
   if (cases.length < all.length) console.error(`${all.length - cases.length} case(s) not filled in yet (product_title FILL), skipped`);
 
-  const providerName = values.provider || process.env.VISION_PROVIDER || "ollama";
+  const providerName = values.provider || process.env.VISION_PROVIDER || "gemini";
   const runName = values.run ?? `${new Date().toISOString().slice(0, 16).replace(/[:T]/g, "-")}-${providerName}`;
   const runDir = path.join(EVAL_DIR, "results", runName);
   const recDir = path.join(runDir, "records");
@@ -134,8 +135,17 @@ async function main() {
       i++;
       const out = path.join(recDir, `${r.case_id}.json`);
       if (existsSync(out)) {
-        console.error(`[${i}/${cases.length}] ${r.case_id} already in this run, skipped`);
-        continue;
+        const prev = JSON.parse(readFileSync(out, "utf8")) as EvidenceRecord;
+        if (prev.status !== "pending") {
+          console.error(`[${i}/${cases.length}] ${r.case_id} already in this run, skipped`);
+          continue;
+        }
+        // A pending record means the model call failed (e.g. a temporary overload). Keep it as
+        // evidence of the fail-open path, out of the scored folder, then try the case again.
+        const attemptsDir = path.join(recDir, "attempts");
+        mkdirSync(attemptsDir, { recursive: true });
+        renameSync(out, path.join(attemptsDir, `${r.case_id}.${prev.captured_at.replace(/[:.]/g, "-")}.pending.json`));
+        console.error(`[${i}/${cases.length}] ${r.case_id} was pending (${prev.model.error}), retrying`);
       }
       const record = await inspectUnit({
         po: caseToPo(r),
@@ -201,6 +211,7 @@ async function main() {
     scored_cases: evalCases.length,
     labellers: lb ? 2 : 1,
     pending: pending.length,
+    retried_after_pending: existsSync(path.join(recDir, "attempts")) ? readdirSync(path.join(recDir, "attempts")).length : 0,
     latency_s: { median: q(0.5), p90: q(0.9), max: lat.length ? lat[lat.length - 1] / 1000 : null },
   };
   writeFileSync(path.join(runDir, "metrics.json"), JSON.stringify({ meta, perCheck, overall, byConfidence: conf, agreement: agree, dropped, misses, unlabelled }, null, 2));
@@ -211,7 +222,7 @@ async function main() {
   L.push(`| | |`, `|---|---|`);
   L.push(`| Model | ${meta.provider} / ${meta.model} |`, `| Prompt | ${meta.prompt_version} |`, `| Contract | ${meta.contract_version} |`, `| Code | ${meta.code_commit} |`);
   L.push(`| Cases run / scored | ${meta.cases} / ${meta.scored_cases} |`, `| Labellers | ${meta.labellers}${meta.labellers === 1 ? " (no agreement measure possible)" : ""} |`);
-  L.push(`| Pending (model failed, fail-open) | ${meta.pending} |`);
+  L.push(`| Pending (model failed, fail-open) | ${meta.pending} final; ${meta.retried_after_pending} earlier attempt(s) pending and retried (kept in records/attempts/) |`);
   L.push(`| Latency per unit | median ${meta.latency_s.median ?? "–"} s, p90 ${meta.latency_s.p90 ?? "–"} s, max ${meta.latency_s.max ?? "–"} s |`, "");
 
   L.push(`## Per check`, "", `Positive = FAIL (a problem is present). FN = a real problem the agent passed. FP = a false alarm. UNCERTAIN is counted separately, never as right or wrong.`, "");

@@ -1,7 +1,7 @@
 // Headless Receiving Manager: inspect one unit from local photo files, print the evidence record.
 //
 //   npm run agent -- --unit UNIT-0001 --photo pallet=fixtures/a.jpg --photo unit=fixtures/b.jpg \
-//                    [--cartons 1] [--upc 24] [--operator op_eli] [--out runs/] [--provider ollama|gemini]
+//                    [--cartons 1] [--upc 24] [--operator op_eli] [--out runs/] [--provider gemini|ollama]
 //
 // The PO line is looked up by unit_id in data/receiving_sample.csv. Works without Supabase.
 import { config } from "dotenv";

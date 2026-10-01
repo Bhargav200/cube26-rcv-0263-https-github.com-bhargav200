@@ -12,7 +12,7 @@ export default async function InspectPage() {
     db.from("po_lines").select("*").order("unit_id").returns<PoLine[]>(),
     db.from("inspections").select("record_id, unit_id, status, overall, created_at").order("created_at", { ascending: false }).limit(8),
   ]);
-  const gemini = process.env.VISION_PROVIDER === "gemini";
+  const gemini = (process.env.VISION_PROVIDER || "gemini") === "gemini";
   const timeoutS = Math.round(Number((gemini ? process.env.GEMINI_TIMEOUT_MS : process.env.OLLAMA_TIMEOUT_MS) || (gemini ? 120_000 : 600_000)) / 1000);
 
   return (
