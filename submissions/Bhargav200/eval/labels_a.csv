@@ -1,23 +1,21 @@
 case_id,identity,variant_colour,carton_count,units_per_carton,quantity,carton_damage,unit_damage,components,defects,notes
-EV01,,,,,,,,,,
-EV02,,,,,,,,,,
-EV03,,,,,,,,,,
-EV04,,,,,,,,,,
-EV05,,,,,,,,,,
-EV06,,,,,,,,,,
-EV07,,,,,,,,,,
-EV08,,,,,,,,,,
-EV09,,,,,,,,,,
-EV10,,,,,,,,,,
-EV11,,,,,,,,,,
-EV12,,,,,,,,,,
-EV13,,,,,,,,,,
-EV14,,,,,,,,,,
-EV15,,,,,,,,,,
-EV16,,,,,,,,,,
+EV01,PASS,PASS,UNCERTAIN,UNCERTAIN,UNCERTAIN,UNCERTAIN,FAIL,UNCERTAIN,FAIL,Cocoa Krispies box and inner bag torn and cereal spilled. Only the inside of the shipping carton is visible so its outside and the counts can't be judged.
+EV02,PASS,PASS,UNCERTAIN,UNCERTAIN,UNCERTAIN,UNCERTAIN,PASS,UNCERTAIN,PASS,label reads Magnum mini Classic x6 330 ml. No carton in the photo. Pack sealed with no tear visible.
+EV03,FAIL,FAIL,UNCERTAIN,UNCERTAIN,UNCERTAIN,UNCERTAIN,PASS,UNCERTAIN,PASS,photo shows a Magnum pack but the PO orders a Ben & Jerry's tub of 465 ml.
+EV04,PASS,FAIL,UNCERTAIN,UNCERTAIN,UNCERTAIN,UNCERTAIN,PASS,UNCERTAIN,PASS,right product but the label says 330 ml and the PO asks for 500 ml.
+EV05,UNCERTAIN,UNCERTAIN,PASS,UNCERTAIN,UNCERTAIN,FAIL,UNCERTAIN,UNCERTAIN,UNCERTAIN,one whole parcel visible with its side torn open. Contents can't be identified.
+EV06,UNCERTAIN,UNCERTAIN,UNCERTAIN,UNCERTAIN,UNCERTAIN,FAIL,UNCERTAIN,UNCERTAIN,UNCERTAIN,only one corner of the box is visible; it is crushed and split.
+EV07,UNCERTAIN,UNCERTAIN,UNCERTAIN,PASS,UNCERTAIN,PASS,FAIL,UNCERTAIN,UNCERTAIN,9 unit boxes countable (sign says QTY 9). Round holes in the carton are built-in hand-holes not damage. Several unit boxes have punctures. Other cartons are partly in frame so the carton count is unclear.
+EV08,UNCERTAIN,UNCERTAIN,UNCERTAIN,FAIL,UNCERTAIN,PASS,FAIL,UNCERTAIN,UNCERTAIN,same photo as EV07; 9 units visible but the PO expects 10 per carton.
+EV09,UNCERTAIN,UNCERTAIN,UNCERTAIN,UNCERTAIN,UNCERTAIN,FAIL,UNCERTAIN,UNCERTAIN,UNCERTAIN,top of the box torn and crumpled; the whole box isn't visible.
+EV10,UNCERTAIN,UNCERTAIN,PASS,UNCERTAIN,UNCERTAIN,FAIL,UNCERTAIN,UNCERTAIN,UNCERTAIN,whole box visible with dark water stains and a hole in the side.
+EV11,UNCERTAIN,UNCERTAIN,UNCERTAIN,UNCERTAIN,UNCERTAIN,FAIL,UNCERTAIN,UNCERTAIN,UNCERTAIN,BORDERLINE: dark stain on one edge that looks like liquid but could be dirt. A second box is in frame.
+EV12,UNCERTAIN,UNCERTAIN,PASS,UNCERTAIN,UNCERTAIN,FAIL,UNCERTAIN,UNCERTAIN,UNCERTAIN,box with its side ripped wide open.
+EV13,UNCERTAIN,UNCERTAIN,UNCERTAIN,UNCERTAIN,UNCERTAIN,PASS,PASS,UNCERTAIN,UNCERTAIN,about 19 white unit boxes on top and some tilted; more may be hidden underneath so units per carton can't be confirmed.
+EV14,UNCERTAIN,UNCERTAIN,UNCERTAIN,UNCERTAIN,UNCERTAIN,FAIL,UNCERTAIN,UNCERTAIN,UNCERTAIN,inside of an open carton with a large water stain on the bottom and wet packing paper. No product visible.
+EV15,UNCERTAIN,UNCERTAIN,PASS,UNCERTAIN,UNCERTAIN,FAIL,UNCERTAIN,UNCERTAIN,UNCERTAIN,box ripped open on two sides; fabric items visible inside but not identifiable.
+EV16,UNCERTAIN,UNCERTAIN,PASS,UNCERTAIN,UNCERTAIN,FAIL,UNCERTAIN,UNCERTAIN,UNCERTAIN,whole parcel visible and crushed flat.
 EV17,,,,,,,,,,
 EV18,,,,,,,,,,
 EV19,,,,,,,,,,
 EV20,,,,,,,,,,
-EV21,,,,,,,,,,
-EV22,,,,,,,,,,

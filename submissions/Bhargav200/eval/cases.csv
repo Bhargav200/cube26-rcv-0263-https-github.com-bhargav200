@@ -1,23 +1,21 @@
 case_id,scenario,photos,product_title,sku,spec_colour,spec_variant,spec_components,cartons_ordered,units_per_carton_ordered,operator_cartons,operator_upc,notes
-EV01,correct shipment,carton=EV01_carton.jpg;carton=EV01_open.jpg;unit=EV01_unit.jpg;label=EV01_label.jpg,FILL,,,,,1,,,,
-EV02,correct shipment,carton=EV02_carton.jpg;carton=EV02_open.jpg;unit=EV02_unit.jpg,FILL,,,,,1,,,,
-EV03,correct shipment,carton=EV03_carton.jpg;carton=EV03_open.jpg;unit=EV03_unit.jpg,FILL,,,,,1,,,,
-EV04,wrong SKU (reuses EV01 photos),carton=EV01_carton.jpg;carton=EV01_open.jpg;unit=EV01_unit.jpg;label=EV01_label.jpg,FILL,,,,,1,,,,
-EV05,wrong SKU (reuses EV02 photos),carton=EV02_carton.jpg;carton=EV02_open.jpg;unit=EV02_unit.jpg,FILL,,,,,1,,,,
-EV06,wrong colour (reuses EV03 photos),carton=EV03_carton.jpg;carton=EV03_open.jpg;unit=EV03_unit.jpg,FILL,,,,,1,,,,
-EV07,wrong variant,carton=EV07_carton.jpg;unit=EV07_unit.jpg;label=EV07_label.jpg,FILL,,,,,1,,,,
-EV08,right variant control (reuses EV07 photos),carton=EV07_carton.jpg;unit=EV07_unit.jpg;label=EV07_label.jpg,FILL,,,,,1,,,,
-EV09,crushed carton,carton=EV09_carton.jpg;carton=EV09_open.jpg,FILL,,,,,1,,,,
-EV10,crushed carton,carton=EV10_carton.jpg;carton=EV10_open.jpg,FILL,,,,,1,,,,
-EV11,water-damaged carton,carton=EV11_carton.jpg;carton=EV11_open.jpg,FILL,,,,,1,,,,
-EV12,water-damaged carton (subtle),carton=EV12_carton.jpg,FILL,,,,,1,,,,
-EV13,torn carton,carton=EV13_carton.jpg;carton=EV13_open.jpg,FILL,,,,,1,,,,
-EV14,torn unit packaging,unit=EV14_unit.jpg;carton=EV14_carton.jpg,FILL,,,,,1,,,,
-EV15,missing component,unit=EV15_unit.jpg;carton=EV15_open.jpg,FILL,,,,,1,,,,
-EV16,missing component,unit=EV16_unit.jpg;carton=EV16_open.jpg,FILL,,,,,1,,,,
-EV17,short shipment (photo count),carton=EV17_carton.jpg;carton=EV17_open.jpg,FILL,,,,,1,,,,
-EV18,extra units (photo count),carton=EV18_carton.jpg;carton=EV18_open.jpg,FILL,,,,,1,,,,
-EV19,short shipment (operator count),carton=EV19_carton.jpg;carton=EV19_open.jpg,FILL,,,,,1,,,,
-EV20,ambiguous: blurred dark photo,carton=EV20_carton.jpg;carton=EV20_open.jpg,FILL,,,,,1,,,,
-EV21,ambiguous: product cut off,unit=EV21_unit.jpg,FILL,,,,,1,,,,
-EV22,obvious defect,unit=EV22_unit.jpg;carton=EV22_carton.jpg,FILL,,,,,1,,,,
+EV01,unit damage: product box torn and contents spilled,carton=nb01_cereal-box-torn.jpg,Kellogg's Cocoa Krispies Cereal,SKU-CEREAL-COCOA,n/a,chocolatey,cereal box,1,1,,,neighbour photo #1
+EV02,correct product and size (identity + variant),unit=nb02_magnum-pack.jpg,Magnum Mini Classic Ice Cream,SKU-MAGNUM-MINI6,n/a,330ml,ice cream bar,1,1,,,neighbour photo #2
+EV03,wrong SKU (same photo as EV02 against a different PO line),unit=nb02_magnum-pack.jpg,Ben & Jerry's Cookie Dough Tub,SKU-BJ-COOKIE-465,n/a,465ml,tub;lid,1,1,,,reuses neighbour photo #2
+EV04,wrong variant (same photo as EV02; PO asks for another size),unit=nb02_magnum-pack.jpg,Magnum Mini Classic Ice Cream,SKU-MAGNUM-MINI6-500,n/a,500ml,ice cream bar,1,1,,,reuses neighbour photo #2
+EV05,carton torn (sealed parcel),carton=nb03_box-side-torn.jpg,Bluetooth Speaker,SKU-SPEAKER-BT,black,standard,speaker;charging cable,1,1,,,neighbour photo #3
+EV06,carton corner crushed and split,carton=nb04_box-corner-crushed.jpg,Ceramic Dinner Plate Set,SKU-PLATE-SET4,n/a,4-pack,plate x4,1,1,,,neighbour photo #4
+EV07,correct count: 9 units in open carton,carton=nb05_qty9-open-carton.jpg,Phone Charger 20W,SKU-CHARGER-20W,n/a,20W,charger,1,9,,,neighbour photo #5
+EV08,short shipment by photo count (same photo as EV07; PO expects 10),carton=nb05_qty9-open-carton.jpg,Phone Charger 20W,SKU-CHARGER-20W,n/a,20W,charger,1,10,,,reuses neighbour photo #5
+EV09,carton top torn and crushed,carton=nb06_box-top-torn.jpg,Kitchen Blender 600W,SKU-BLENDER-600,n/a,600W,blender jar;base;lid,1,1,,,neighbour photo #6 (its duplicate #8 removed)
+EV10,water-damaged carton with a hole,carton=nb07_box-water-stain-hole.jpg,Cotton Bath Towel,SKU-TOWEL-BLU,blue,bath,towel,1,1,,,neighbour photo #7
+EV11,ambiguous: dark stain on one edge (liquid or dirt?),carton=nb09_box-edge-stain.jpg,Dry Dog Food 5kg,SKU-DOGFOOD-5KG,n/a,5kg,food bag,1,1,,,neighbour photo #9
+EV12,carton side ripped open,carton=nb10_box-side-ripped.jpg,Toy Building Blocks Set,SKU-TOY-BLOCKS,n/a,500 pieces,blocks;instruction booklet,1,1,,,neighbour photo #10
+EV13,hard count: top layer only (PO expects 20),carton=nb11_open-carton-white-boxes.jpg,Smart Plug,SKU-SMARTPLUG,white,standard,plug,1,20,,,neighbour photo #11
+EV14,water damage inside an open carton,carton=nb12_box-inside-water.jpg,LED Desk Lamp,SKU-LAMP-LED,n/a,standard,lamp;usb cable,1,1,,,neighbour photo #12
+EV15,carton ripped open with contents exposed,carton=nb13_box-ripped-open.jpg,Wool Blanket,SKU-BLANKET-RED,red,queen,blanket,1,1,,,neighbour photo #13
+EV16,carton crushed (HEAVY parcel),carton=nb14_box-crushed-heavy.jpg,Cast Iron Dumbbell 10kg,SKU-DUMBBELL-10,black,10kg,dumbbell,1,1,,,neighbour photo #14
+EV17,correct shipment: clean box with product and parts visible,carton=EV17_carton.jpg;carton=EV17_open.jpg;unit=EV17_unit.jpg,FILL,,,,,1,,,,still to shoot (see SHOT-LIST.md)
+EV18,missing component,unit=EV18_unit.jpg;carton=EV18_open.jpg,FILL,,,,,1,,,,still to shoot
+EV19,right variant: size printed on the label,unit=EV19_unit.jpg;label=EV19_label.jpg,FILL,,,,,1,,,,still to shoot
+EV20,ambiguous: blurred dark photo,carton=EV20_carton.jpg,FILL,,,,,1,,,,still to shoot

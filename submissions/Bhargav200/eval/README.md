@@ -7,7 +7,7 @@ Shooting instructions: [SHOT-LIST.md](SHOT-LIST.md). Results write-up: [../eval-
 
 | File | What it is |
 |---|---|
-| `photos/` | The photos. Run `npm run eval:shrink` (in `agent/`) once after copying them in, before the first eval run. |
+| `photos/` | The photos. `nb…` files are real delivery photos contributed by neighbours (published with permission; one duplicate removed). `EV17_…` to `EV20_…` are the owner's own shots. Run `npm run eval:shrink` (in `agent/`) once after adding phone photos, before the first eval run. |
 | `cases.csv` | One row per case: which photos, and the PO line it's checked against. |
 | `labels_a.csv` | Labeller A's verdict for each check of each case. |
 | `labels_b.csv` | Labeller B, done independently. Optional. Copy `labels_b.template.csv` to create it. |
@@ -17,7 +17,7 @@ Shooting instructions: [SHOT-LIST.md](SHOT-LIST.md). Results write-up: [../eval-
 
 | Column | Meaning |
 |---|---|
-| `case_id` | EV01 … EV22 |
+| `case_id` | EV01 … EV20 |
 | `scenario` | Which portal test scenario it covers |
 | `photos` | `role=file;role=file`, roles: pallet, carton, unit, label, other. Files in `photos/`. |
 | `product_title`, `sku` | What the PO says should arrive. `FILL` = not shot yet, and the case is skipped. |
@@ -25,7 +25,7 @@ Shooting instructions: [SHOT-LIST.md](SHOT-LIST.md). Results write-up: [../eval-
 | `spec_variant` | Expected variant/size as printed on the label (e.g. `500ml`, `10 pcs`) |
 | `spec_components` | Parts that should be present, `;`-separated (e.g. `bottle;lid`) |
 | `cartons_ordered`, `units_per_carton_ordered` | Ordered counts |
-| `operator_cartons`, `operator_upc` | What an operator counted at the dock. **Leave blank** except in EV19, so the counts are tested from the photos. |
+| `operator_cartons`, `operator_upc` | What an operator counted at the dock. **Left blank** in this set, so the counts are tested from the photos. |
 
 ## How to label (labels_a.csv / labels_b.csv)
 
@@ -53,7 +53,7 @@ Label before looking at the agent's output. Don't change a label after seeing a 
 
 ```sh
 npm run eval:shrink                              # once, after copying photos in
-npm run eval -- --provider gemini                # ~22 cases, about 3 minutes on the free tier
-npm run eval -- --provider ollama --run ollama-1 # local LLaVA, 2–7 min per case on CPU; resumable
-npm run eval -- --score-only --run ollama-1      # rescore without calling the model
+npm run eval -- --run gemini-1                   # default model (Gemini 3.5 Flash-Lite), 20 cases, ~10 min on the free tier
+npm run eval -- --provider ollama --run llava-1  # optional: offline LLaVA, 1–7 min per case on CPU; resumable
+npm run eval -- --score-only --run gemini-1      # rescore without calling the model
 ```
