@@ -1,0 +1,213 @@
+{
+  "contract_version": "receiving-evidence/0.2",
+  "stage": "receiving",
+  "record_id": "RCV-EV06",
+  "unit_id": "EV06",
+  "org_id": "org_eval",
+  "status": "complete",
+  "overall": "EXCEPTION",
+  "expected": {
+    "unit_id": "EV06",
+    "org_id": "org_eval",
+    "po_number": "PO-EVAL",
+    "po_line": 1,
+    "supplier": "Eval set",
+    "sku": "SKU-PLATE-SET4",
+    "asin": "n/a",
+    "product_title": "Ceramic Dinner Plate Set",
+    "spec_colour": "n/a",
+    "spec_variant": "4-pack",
+    "spec_components": [
+      "plate x4"
+    ],
+    "cartons_ordered": 1,
+    "units_per_carton_ordered": 1,
+    "qty_ordered": 1
+  },
+  "summary": {
+    "cartons_received": null,
+    "units_per_carton_counted": null,
+    "qty_received": null,
+    "identity_match": "uncertain",
+    "carton_damage": "crushing;tears",
+    "unit_damage": "uncertain",
+    "quality_flags": []
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-PLATE-SET4 · Ceramic Dinner Plate Set",
+      "verdict": "UNCERTAIN",
+      "observed": "unclear",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "The model couldn't tell what the product is.",
+      "confidence": null
+    },
+    {
+      "name": "variant_colour",
+      "expected": "4-pack",
+      "verdict": "UNCERTAIN",
+      "observed": "no label text",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "variant \"4-pack\" not confirmed by any label text.",
+      "confidence": null
+    },
+    {
+      "name": "carton_count",
+      "expected": 1,
+      "observed": 1,
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "UNCERTAIN",
+      "reason": "Photos show 1 cartons but not all of them are visible, and there's no operator count.",
+      "confidence": null
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 1,
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No operator count and no reliable photo count for units per carton.",
+      "confidence": null
+    },
+    {
+      "name": "quantity",
+      "expected": 1,
+      "source": "derived",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "Total can't be derived: carton count or units per carton is uncertain.",
+      "confidence": null
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "FAIL",
+      "observed": [
+        "crushing",
+        "tears"
+      ],
+      "reason": "The carton shows visible crushing, denting, and a tear on the corner edge in photo #1.",
+      "confidence": "medium"
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "Units are not visible.",
+      "confidence": null
+    },
+    {
+      "name": "components",
+      "expected": [
+        "plate x4"
+      ],
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "observed": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No unit is shown out of its packaging, so components can't be checked.",
+      "confidence": null
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "UNCERTAIN",
+      "observed": "Units are not visible to inspect for defects.",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "Units are not visible to inspect for defects.",
+      "confidence": null
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "carton",
+      "ref": "eval/photos/nb04_box-corner-crushed.jpg",
+      "sha256": "20946bbb3165f154221843fa658d24a2e5dfc1aae3514e80ee7a3f0be7a71f4b"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": null,
+    "units_per_carton_counted": null
+  },
+  "operator_id": "eval",
+  "captured_at": "2026-10-01T09:52:27.946Z",
+  "model": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "latency_ms": 3955,
+    "error": null,
+    "raw_output": "{\n  \"photo_quality\": \"good\",\n  \"photo_quality_reason\": \"The image is clear and in focus, showing the carton and its damage.\",\n  \"product_type\": \"unclear\",\n  \"product_description\": \"An unidentified product in a cardboard carton.\",\n  \"product_photos\": [\n    1\n  ],\n  \"colour_seen\": null,\n  \"label_text\": null,\n  \"cartons_visible\": 1,\n  \"cartons_fully_visible\": false,\n  \"units_in_open_carton\": null,\n  \"open_carton_fully_visible\": false,\n  \"count_photos\": [\n    1\n  ],\n  \"carton_damage\": \"damaged\",\n  \"carton_damage_types\": [\n    \"crushing\",\n    \"tears\"\n  ],\n  \"carton_damage_reason\": \"The carton shows visible crushing, denting, and a tear on the corner edge in photo #1.\",\n  \"carton_damage_photos\": [\n    1\n  ],\n  \"unit_damage\": \"unclear\",\n  \"unit_damage_types\": [],\n  \"unit_damage_reason\": \"Units are not visible.\",\n  \"unit_damage_photos\": [],\n  \"opened_unit_visible\": false,\n  \"parts_seen\": [],\n  \"defect_present\": \"unclear\",\n  \"defect_description\": \"Units are not visible to inspect for defects.\",\n  \"defect_photos\": []\n}"
+  },
+  "issues": [
+    {
+      "check": "carton_damage",
+      "verdict": "FAIL",
+      "detail": "The carton shows visible crushing, denting, and a tear on the corner edge in photo #1."
+    },
+    {
+      "check": "identity",
+      "verdict": "UNCERTAIN",
+      "detail": "The model couldn't tell what the product is."
+    },
+    {
+      "check": "variant_colour",
+      "verdict": "UNCERTAIN",
+      "detail": "variant \"4-pack\" not confirmed by any label text."
+    },
+    {
+      "check": "carton_count",
+      "verdict": "UNCERTAIN",
+      "detail": "Photos show 1 cartons but not all of them are visible, and there's no operator count."
+    },
+    {
+      "check": "units_per_carton",
+      "verdict": "UNCERTAIN",
+      "detail": "No operator count and no reliable photo count for units per carton."
+    },
+    {
+      "check": "quantity",
+      "verdict": "UNCERTAIN",
+      "detail": "Total can't be derived: carton count or units per carton is uncertain."
+    },
+    {
+      "check": "unit_damage",
+      "verdict": "UNCERTAIN",
+      "detail": "Units are not visible."
+    },
+    {
+      "check": "components",
+      "verdict": "UNCERTAIN",
+      "detail": "No unit is shown out of its packaging, so components can't be checked."
+    },
+    {
+      "check": "defects",
+      "verdict": "UNCERTAIN",
+      "detail": "Units are not visible to inspect for defects."
+    }
+  ],
+  "content_hash": "f67d3e3f42848be94bd4e71b6da6b8c4eb0490c2aa28e530318b4d2dc799678c"
+}

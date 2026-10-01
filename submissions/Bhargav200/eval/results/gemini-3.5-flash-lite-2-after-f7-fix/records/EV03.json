@@ -1,0 +1,205 @@
+{
+  "contract_version": "receiving-evidence/0.2",
+  "stage": "receiving",
+  "record_id": "RCV-EV03",
+  "unit_id": "EV03",
+  "org_id": "org_eval",
+  "status": "complete",
+  "overall": "EXCEPTION",
+  "expected": {
+    "unit_id": "EV03",
+    "org_id": "org_eval",
+    "po_number": "PO-EVAL",
+    "po_line": 1,
+    "supplier": "Eval set",
+    "sku": "SKU-BJ-COOKIE-465",
+    "asin": "n/a",
+    "product_title": "Ben & Jerry's Cookie Dough Tub",
+    "spec_colour": "n/a",
+    "spec_variant": "465ml",
+    "spec_components": [
+      "tub",
+      "lid"
+    ],
+    "cartons_ordered": 1,
+    "units_per_carton_ordered": 1,
+    "qty_ordered": 1
+  },
+  "summary": {
+    "cartons_received": null,
+    "units_per_carton_counted": null,
+    "qty_received": null,
+    "identity_match": "no",
+    "carton_damage": "uncertain",
+    "unit_damage": "uncertain",
+    "quality_flags": [
+      "wrong_variant"
+    ]
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-BJ-COOKIE-465 · Ben & Jerry's Cookie Dough Tub",
+      "verdict": "FAIL",
+      "observed": "ice cream multipack",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "Seen \"ice cream multipack\" (A gold-colored plastic multipack wrapper for Magnum mini classic ice cream bars.); no product word in common with \"Ben & Jerry's Cookie Dough Tub\".",
+      "confidence": "medium"
+    },
+    {
+      "name": "variant_colour",
+      "expected": "465ml",
+      "verdict": "FAIL",
+      "observed": "6 mini CLASSIC x6 M MAGNUM YENİ NET MİKTAR: 330 ml, 246 g e 2 PORSCHE şikayetvar",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "wrong variant: label reads \"6 mini CLASSIC x6 M MAGNUM YENİ NET MİKTAR: 330 ml, 246 g e 2 PORSCHE şikayetvar\", spec is 465ml.",
+      "confidence": "medium"
+    },
+    {
+      "name": "carton_count",
+      "expected": 1,
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No operator count and no reliable photo count for cartons.",
+      "confidence": null
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 1,
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No operator count and no reliable photo count for units per carton.",
+      "confidence": null
+    },
+    {
+      "name": "quantity",
+      "expected": 1,
+      "source": "derived",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "Total can't be derived: carton count or units per carton is uncertain.",
+      "confidence": null
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "not applicable",
+      "confidence": null
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "not applicable",
+      "confidence": null
+    },
+    {
+      "name": "components",
+      "expected": [
+        "tub",
+        "lid"
+      ],
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "observed": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No unit is shown out of its packaging, so components can't be checked.",
+      "confidence": null
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "PASS",
+      "observed": "none",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "no defect visible",
+      "confidence": "medium"
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "unit",
+      "ref": "eval/photos/nb02_magnum-pack.jpg",
+      "sha256": "bd2aea6abeb3ebeec9af2907f206c08a20cfbc2390ffdb4670088738da0de09d"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": null,
+    "units_per_carton_counted": null
+  },
+  "operator_id": "eval",
+  "captured_at": "2026-10-01T09:51:54.160Z",
+  "model": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "latency_ms": 17273,
+    "error": null,
+    "raw_output": "{\n  \"photo_quality\": \"good\",\n  \"photo_quality_reason\": \"The image is clear and legible.\",\n  \"product_type\": \"ice cream multipack\",\n  \"product_description\": \"A gold-colored plastic multipack wrapper for Magnum mini classic ice cream bars.\",\n  \"product_photos\": [\n    1\n  ],\n  \"colour_seen\": \"gold\",\n  \"label_text\": \"6 mini CLASSIC x6 M MAGNUM YENİ NET MİKTAR: 330 ml, 246 g e 2 PORSCHE şikayetvar\",\n  \"cartons_visible\": null,\n  \"cartons_fully_visible\": false,\n  \"units_in_open_carton\": null,\n  \"open_carton_fully_visible\": false,\n  \"count_photos\": [],\n  \"carton_damage\": \"unclear\",\n  \"carton_damage_types\": [],\n  \"carton_damage_reason\": \"not applicable\",\n  \"carton_damage_photos\": [],\n  \"unit_damage\": \"unclear\",\n  \"unit_damage_types\": [],\n  \"unit_damage_reason\": \"not applicable\",\n  \"unit_damage_photos\": [],\n  \"opened_unit_visible\": false,\n  \"parts_seen\": [],\n  \"defect_present\": \"no\",\n  \"defect_description\": \"no defect visible\",\n  \"defect_photos\": []\n}"
+  },
+  "issues": [
+    {
+      "check": "identity",
+      "verdict": "FAIL",
+      "detail": "Seen \"ice cream multipack\" (A gold-colored plastic multipack wrapper for Magnum mini classic ice cream bars.); no product word in common with \"Ben & Jerry's Cookie Dough Tub\"."
+    },
+    {
+      "check": "variant_colour",
+      "verdict": "FAIL",
+      "detail": "wrong variant: label reads \"6 mini CLASSIC x6 M MAGNUM YENİ NET MİKTAR: 330 ml, 246 g e 2 PORSCHE şikayetvar\", spec is 465ml."
+    },
+    {
+      "check": "carton_count",
+      "verdict": "UNCERTAIN",
+      "detail": "No operator count and no reliable photo count for cartons."
+    },
+    {
+      "check": "units_per_carton",
+      "verdict": "UNCERTAIN",
+      "detail": "No operator count and no reliable photo count for units per carton."
+    },
+    {
+      "check": "quantity",
+      "verdict": "UNCERTAIN",
+      "detail": "Total can't be derived: carton count or units per carton is uncertain."
+    },
+    {
+      "check": "carton_damage",
+      "verdict": "UNCERTAIN",
+      "detail": "not applicable"
+    },
+    {
+      "check": "unit_damage",
+      "verdict": "UNCERTAIN",
+      "detail": "not applicable"
+    },
+    {
+      "check": "components",
+      "verdict": "UNCERTAIN",
+      "detail": "No unit is shown out of its packaging, so components can't be checked."
+    }
+  ],
+  "content_hash": "7e4f7e17bb7122d893868ab3d003175952fb92deb4c95df330bf0be1b83b166d"
+}

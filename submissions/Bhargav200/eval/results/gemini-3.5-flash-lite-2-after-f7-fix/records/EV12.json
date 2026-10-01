@@ -1,0 +1,209 @@
+{
+  "contract_version": "receiving-evidence/0.2",
+  "stage": "receiving",
+  "record_id": "RCV-EV12",
+  "unit_id": "EV12",
+  "org_id": "org_eval",
+  "status": "complete",
+  "overall": "EXCEPTION",
+  "expected": {
+    "unit_id": "EV12",
+    "org_id": "org_eval",
+    "po_number": "PO-EVAL",
+    "po_line": 1,
+    "supplier": "Eval set",
+    "sku": "SKU-TOY-BLOCKS",
+    "asin": "n/a",
+    "product_title": "Toy Building Blocks Set",
+    "spec_colour": "n/a",
+    "spec_variant": "500 pieces",
+    "spec_components": [
+      "blocks",
+      "instruction booklet"
+    ],
+    "cartons_ordered": 1,
+    "units_per_carton_ordered": 1,
+    "qty_ordered": 1
+  },
+  "summary": {
+    "cartons_received": null,
+    "units_per_carton_counted": null,
+    "qty_received": null,
+    "identity_match": "uncertain",
+    "carton_damage": "crushing;tears",
+    "unit_damage": "uncertain",
+    "quality_flags": []
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-TOY-BLOCKS · Toy Building Blocks Set",
+      "verdict": "UNCERTAIN",
+      "observed": "unclear",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "The model couldn't tell what the product is.",
+      "confidence": null
+    },
+    {
+      "name": "variant_colour",
+      "expected": "500 pieces",
+      "verdict": "UNCERTAIN",
+      "observed": "no label text",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "variant \"500 pieces\" not confirmed by any label text.",
+      "confidence": null
+    },
+    {
+      "name": "carton_count",
+      "expected": 1,
+      "observed": 1,
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "UNCERTAIN",
+      "reason": "Photos show 1 cartons but not all of them are visible, and there's no operator count.",
+      "confidence": null
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 1,
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No operator count and no reliable photo count for units per carton.",
+      "confidence": null
+    },
+    {
+      "name": "quantity",
+      "expected": 1,
+      "source": "derived",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "Total can't be derived: carton count or units per carton is uncertain.",
+      "confidence": null
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "FAIL",
+      "observed": [
+        "crushing",
+        "tears"
+      ],
+      "reason": "The carton has a large tear and crushed corner on the top side.",
+      "confidence": "medium"
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "The units are not visible inside the damaged carton.",
+      "confidence": null
+    },
+    {
+      "name": "components",
+      "expected": [
+        "blocks",
+        "instruction booklet"
+      ],
+      "source": "model",
+      "photo_refs": [],
+      "observed": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No unit is shown out of its packaging, so components can't be checked.",
+      "confidence": null
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "UNCERTAIN",
+      "observed": "Cannot determine product defects as the product is hidden inside the carton.",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "Cannot determine product defects as the product is hidden inside the carton.",
+      "confidence": null
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "carton",
+      "ref": "eval/photos/nb10_box-side-ripped.jpg",
+      "sha256": "9281df4ef8805126e8829e1018e42a2202855b195e763bc0922812295735ad50"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": null,
+    "units_per_carton_counted": null
+  },
+  "operator_id": "eval",
+  "captured_at": "2026-10-01T09:53:32.764Z",
+  "model": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "latency_ms": 3740,
+    "error": null,
+    "raw_output": "{\n  \"photo_quality\": \"good\",\n  \"photo_quality_reason\": \"The image is clear and clearly shows the carton and the damage.\",\n  \"product_type\": \"unclear\",\n  \"product_description\": \"The interior product is not clearly visible inside the damaged carton.\",\n  \"product_photos\": [],\n  \"colour_seen\": null,\n  \"label_text\": null,\n  \"cartons_visible\": 1,\n  \"cartons_fully_visible\": false,\n  \"units_in_open_carton\": null,\n  \"open_carton_fully_visible\": false,\n  \"count_photos\": [1],\n  \"carton_damage\": \"damaged\",\n  \"carton_damage_types\": [\n    \"crushing\",\n    \"tears\"\n  ],\n  \"carton_damage_reason\": \"The carton has a large tear and crushed corner on the top side.\",\n  \"carton_damage_photos\": [\n    1\n  ],\n  \"unit_damage\": \"unclear\",\n  \"unit_damage_types\": [],\n  \"unit_damage_reason\": \"The units are not visible inside the damaged carton.\",\n  \"unit_damage_photos\": [],\n  \"opened_unit_visible\": false,\n  \"parts_seen\": [],\n  \"defect_present\": \"unclear\",\n  \"defect_description\": \"Cannot determine product defects as the product is hidden inside the carton.\",\n  \"defect_photos\": []\n}"
+  },
+  "issues": [
+    {
+      "check": "carton_damage",
+      "verdict": "FAIL",
+      "detail": "The carton has a large tear and crushed corner on the top side."
+    },
+    {
+      "check": "identity",
+      "verdict": "UNCERTAIN",
+      "detail": "The model couldn't tell what the product is."
+    },
+    {
+      "check": "variant_colour",
+      "verdict": "UNCERTAIN",
+      "detail": "variant \"500 pieces\" not confirmed by any label text."
+    },
+    {
+      "check": "carton_count",
+      "verdict": "UNCERTAIN",
+      "detail": "Photos show 1 cartons but not all of them are visible, and there's no operator count."
+    },
+    {
+      "check": "units_per_carton",
+      "verdict": "UNCERTAIN",
+      "detail": "No operator count and no reliable photo count for units per carton."
+    },
+    {
+      "check": "quantity",
+      "verdict": "UNCERTAIN",
+      "detail": "Total can't be derived: carton count or units per carton is uncertain."
+    },
+    {
+      "check": "unit_damage",
+      "verdict": "UNCERTAIN",
+      "detail": "The units are not visible inside the damaged carton."
+    },
+    {
+      "check": "components",
+      "verdict": "UNCERTAIN",
+      "detail": "No unit is shown out of its packaging, so components can't be checked."
+    },
+    {
+      "check": "defects",
+      "verdict": "UNCERTAIN",
+      "detail": "Cannot determine product defects as the product is hidden inside the carton."
+    }
+  ],
+  "content_hash": "fc8b2195f470300ec5f83a2e3e33d451b09bca37dcf95bc24248a3fdc6d218a9"
+}

@@ -1,0 +1,206 @@
+{
+  "contract_version": "receiving-evidence/0.2",
+  "stage": "receiving",
+  "record_id": "RCV-EV09",
+  "unit_id": "EV09",
+  "org_id": "org_eval",
+  "status": "complete",
+  "overall": "EXCEPTION",
+  "expected": {
+    "unit_id": "EV09",
+    "org_id": "org_eval",
+    "po_number": "PO-EVAL",
+    "po_line": 1,
+    "supplier": "Eval set",
+    "sku": "SKU-BLENDER-600",
+    "asin": "n/a",
+    "product_title": "Kitchen Blender 600W",
+    "spec_colour": "n/a",
+    "spec_variant": "600W",
+    "spec_components": [
+      "blender jar",
+      "base",
+      "lid"
+    ],
+    "cartons_ordered": 1,
+    "units_per_carton_ordered": 1,
+    "qty_ordered": 1
+  },
+  "summary": {
+    "cartons_received": 1,
+    "units_per_carton_counted": null,
+    "qty_received": null,
+    "identity_match": "uncertain",
+    "carton_damage": "crushing;tears",
+    "unit_damage": "uncertain",
+    "quality_flags": []
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-BLENDER-600 · Kitchen Blender 600W",
+      "verdict": "UNCERTAIN",
+      "observed": "unclear",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "The model couldn't tell what the product is.",
+      "confidence": null
+    },
+    {
+      "name": "variant_colour",
+      "expected": "600W",
+      "verdict": "UNCERTAIN",
+      "observed": "no label text",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "variant \"600W\" not confirmed by any label text.",
+      "confidence": null
+    },
+    {
+      "name": "carton_count",
+      "expected": 1,
+      "observed": 1,
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "PASS",
+      "confidence": "low",
+      "reason": "Photos show 1 cartons, 1 ordered. No operator count to cross-check."
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 1,
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No operator count and no reliable photo count for units per carton.",
+      "confidence": null
+    },
+    {
+      "name": "quantity",
+      "expected": 1,
+      "source": "derived",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "Total can't be derived: carton count or units per carton is uncertain.",
+      "confidence": null
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "FAIL",
+      "observed": [
+        "crushing",
+        "tears"
+      ],
+      "reason": "The carton is severely crushed and torn at the top corner with broken tape.",
+      "confidence": "medium"
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "The unit inside is not visible to assess damage.",
+      "confidence": null
+    },
+    {
+      "name": "components",
+      "expected": [
+        "blender jar",
+        "base",
+        "lid"
+      ],
+      "source": "model",
+      "photo_refs": [],
+      "observed": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No unit is shown out of its packaging, so components can't be checked.",
+      "confidence": null
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "UNCERTAIN",
+      "observed": "Cannot see the product to determine defects.",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "Cannot see the product to determine defects.",
+      "confidence": null
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "carton",
+      "ref": "eval/photos/nb06_box-top-torn.jpg",
+      "sha256": "65e50d010db7690fae1fb88db0a6d0943f4229d1baef451b5448f34209a1f97c"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": null,
+    "units_per_carton_counted": null
+  },
+  "operator_id": "eval",
+  "captured_at": "2026-10-01T09:53:00.114Z",
+  "model": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "latency_ms": 3213,
+    "error": null,
+    "raw_output": "{\n  \"photo_quality\": \"good\",\n  \"photo_quality_reason\": \"The image is clear and well-lit, showing the carton and its damage properly.\",\n  \"product_type\": \"unclear\",\n  \"product_description\": \"The product inside the carton is not visible.\",\n  \"product_photos\": [],\n  \"colour_seen\": null,\n  \"label_text\": null,\n  \"cartons_visible\": 1,\n  \"cartons_fully_visible\": true,\n  \"units_in_open_carton\": null,\n  \"open_carton_fully_visible\": false,\n  \"count_photos\": [1],\n  \"carton_damage\": \"damaged\",\n  \"carton_damage_types\": [\n    \"crushing\",\n    \"tears\"\n  ],\n  \"carton_damage_reason\": \"The carton is severely crushed and torn at the top corner with broken tape.\",\n  \"carton_damage_photos\": [1],\n  \"unit_damage\": \"unclear\",\n  \"unit_damage_types\": [],\n  \"unit_damage_reason\": \"The unit inside is not visible to assess damage.\",\n  \"unit_damage_photos\": [],\n  \"opened_unit_visible\": false,\n  \"parts_seen\": [],\n  \"defect_present\": \"unclear\",\n  \"defect_description\": \"Cannot see the product to determine defects.\",\n  \"defect_photos\": []\n}"
+  },
+  "issues": [
+    {
+      "check": "carton_damage",
+      "verdict": "FAIL",
+      "detail": "The carton is severely crushed and torn at the top corner with broken tape."
+    },
+    {
+      "check": "identity",
+      "verdict": "UNCERTAIN",
+      "detail": "The model couldn't tell what the product is."
+    },
+    {
+      "check": "variant_colour",
+      "verdict": "UNCERTAIN",
+      "detail": "variant \"600W\" not confirmed by any label text."
+    },
+    {
+      "check": "units_per_carton",
+      "verdict": "UNCERTAIN",
+      "detail": "No operator count and no reliable photo count for units per carton."
+    },
+    {
+      "check": "quantity",
+      "verdict": "UNCERTAIN",
+      "detail": "Total can't be derived: carton count or units per carton is uncertain."
+    },
+    {
+      "check": "unit_damage",
+      "verdict": "UNCERTAIN",
+      "detail": "The unit inside is not visible to assess damage."
+    },
+    {
+      "check": "components",
+      "verdict": "UNCERTAIN",
+      "detail": "No unit is shown out of its packaging, so components can't be checked."
+    },
+    {
+      "check": "defects",
+      "verdict": "UNCERTAIN",
+      "detail": "Cannot see the product to determine defects."
+    }
+  ],
+  "content_hash": "a02f9af62c0349f34da93e7d0205de7ebad89e12ac5364f525268d9ed22bce37"
+}

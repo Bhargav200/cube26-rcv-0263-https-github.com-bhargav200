@@ -1,0 +1,195 @@
+{
+  "contract_version": "receiving-evidence/0.2",
+  "stage": "receiving",
+  "record_id": "RCV-EV08",
+  "unit_id": "EV08",
+  "org_id": "org_eval",
+  "status": "complete",
+  "overall": "EXCEPTION",
+  "expected": {
+    "unit_id": "EV08",
+    "org_id": "org_eval",
+    "po_number": "PO-EVAL",
+    "po_line": 1,
+    "supplier": "Eval set",
+    "sku": "SKU-CHARGER-20W",
+    "asin": "n/a",
+    "product_title": "Phone Charger 20W",
+    "spec_colour": "n/a",
+    "spec_variant": "20W",
+    "spec_components": [
+      "charger"
+    ],
+    "cartons_ordered": 1,
+    "units_per_carton_ordered": 10,
+    "qty_ordered": 10
+  },
+  "summary": {
+    "cartons_received": null,
+    "units_per_carton_counted": 9,
+    "qty_received": null,
+    "identity_match": "uncertain",
+    "carton_damage": "none",
+    "unit_damage": "none",
+    "quality_flags": []
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-CHARGER-20W · Phone Charger 20W",
+      "verdict": "UNCERTAIN",
+      "observed": "small boxes",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "Only packaging was seen (\"small boxes\"); the product itself isn't visible and no label names it.",
+      "confidence": null
+    },
+    {
+      "name": "variant_colour",
+      "expected": "20W",
+      "verdict": "UNCERTAIN",
+      "observed": "QTY 9, 38986095",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "variant \"20W\" not confirmed by any label text.",
+      "confidence": null
+    },
+    {
+      "name": "carton_count",
+      "expected": 1,
+      "observed": 1,
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "UNCERTAIN",
+      "reason": "Photos show 1 cartons but not all of them are visible, and there's no operator count.",
+      "confidence": null
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 10,
+      "observed": 9,
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "FAIL",
+      "confidence": "low",
+      "reason": "Photos show 9 units per carton, 10 ordered. No operator count to cross-check."
+    },
+    {
+      "name": "quantity",
+      "expected": 10,
+      "source": "derived",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "Total can't be derived: carton count or units per carton is uncertain.",
+      "confidence": null
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "PASS",
+      "observed": "none",
+      "reason": "No damage visible on the cartons.",
+      "confidence": "medium"
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "PASS",
+      "observed": "none",
+      "reason": "No damage visible on the units.",
+      "confidence": "medium"
+    },
+    {
+      "name": "components",
+      "expected": [
+        "charger"
+      ],
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "observed": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No unit is shown out of its packaging, so components can't be checked.",
+      "confidence": null
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "PASS",
+      "observed": "none",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "No defects observed.",
+      "confidence": "medium"
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "carton",
+      "ref": "eval/photos/nb05_qty9-open-carton.jpg",
+      "sha256": "ac643c85327b9d57e722a6ba1aece5c9d72b584e78919f3d0718c11e1656be79"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": null,
+    "units_per_carton_counted": null
+  },
+  "operator_id": "eval",
+  "captured_at": "2026-10-01T09:52:49.793Z",
+  "model": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "latency_ms": 4489,
+    "error": null,
+    "raw_output": "{\n  \"photo_quality\": \"good\",\n  \"photo_quality_reason\": \"The image is clear, well-lit, and shows the carton and contents properly.\",\n  \"product_type\": \"small boxes\",\n  \"product_description\": \"Small cardboard boxes are packed inside a larger open master carton.\",\n  \"product_photos\": [1],\n  \"colour_seen\": \"brown\",\n  \"label_text\": \"QTY 9, 38986095\",\n  \"cartons_visible\": 1,\n  \"cartons_fully_visible\": false,\n  \"units_in_open_carton\": 9,\n  \"open_carton_fully_visible\": true,\n  \"count_photos\": [1],\n  \"carton_damage\": \"none\",\n  \"carton_damage_types\": [],\n  \"carton_damage_reason\": \"No damage visible on the cartons.\",\n  \"carton_damage_photos\": [],\n  \"unit_damage\": \"none\",\n  \"unit_damage_types\": [],\n  \"unit_damage_reason\": \"No damage visible on the units.\",\n  \"unit_damage_photos\": [],\n  \"opened_unit_visible\": false,\n  \"parts_seen\": [],\n  \"defect_present\": \"no\",\n  \"defect_description\": \"No defects observed.\",\n  \"defect_photos\": []\n}"
+  },
+  "issues": [
+    {
+      "check": "units_per_carton",
+      "verdict": "FAIL",
+      "detail": "Photos show 9 units per carton, 10 ordered. No operator count to cross-check."
+    },
+    {
+      "check": "identity",
+      "verdict": "UNCERTAIN",
+      "detail": "Only packaging was seen (\"small boxes\"); the product itself isn't visible and no label names it."
+    },
+    {
+      "check": "variant_colour",
+      "verdict": "UNCERTAIN",
+      "detail": "variant \"20W\" not confirmed by any label text."
+    },
+    {
+      "check": "carton_count",
+      "verdict": "UNCERTAIN",
+      "detail": "Photos show 1 cartons but not all of them are visible, and there's no operator count."
+    },
+    {
+      "check": "quantity",
+      "verdict": "UNCERTAIN",
+      "detail": "Total can't be derived: carton count or units per carton is uncertain."
+    },
+    {
+      "check": "components",
+      "verdict": "UNCERTAIN",
+      "detail": "No unit is shown out of its packaging, so components can't be checked."
+    }
+  ],
+  "content_hash": "b95a3dfe0fa2bd12670e01b250ac4ef82f611654342da171248e2550701396ad"
+}

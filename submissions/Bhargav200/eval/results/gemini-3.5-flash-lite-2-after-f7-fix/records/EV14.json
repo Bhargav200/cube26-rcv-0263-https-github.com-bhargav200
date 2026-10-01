@@ -1,0 +1,218 @@
+{
+  "contract_version": "receiving-evidence/0.2",
+  "stage": "receiving",
+  "record_id": "RCV-EV14",
+  "unit_id": "EV14",
+  "org_id": "org_eval",
+  "status": "complete",
+  "overall": "EXCEPTION",
+  "expected": {
+    "unit_id": "EV14",
+    "org_id": "org_eval",
+    "po_number": "PO-EVAL",
+    "po_line": 1,
+    "supplier": "Eval set",
+    "sku": "SKU-LAMP-LED",
+    "asin": "n/a",
+    "product_title": "LED Desk Lamp",
+    "spec_colour": "n/a",
+    "spec_variant": "standard",
+    "spec_components": [
+      "lamp",
+      "usb cable"
+    ],
+    "cartons_ordered": 1,
+    "units_per_carton_ordered": 1,
+    "qty_ordered": 1
+  },
+  "summary": {
+    "cartons_received": null,
+    "units_per_carton_counted": 0,
+    "qty_received": null,
+    "identity_match": "uncertain",
+    "carton_damage": "crushing;water;tears",
+    "unit_damage": "uncertain",
+    "quality_flags": []
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-LAMP-LED · LED Desk Lamp",
+      "verdict": "UNCERTAIN",
+      "observed": "cardboard carton",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "Only packaging was seen (\"cardboard carton\"); the product itself isn't visible and no label names it.",
+      "confidence": null
+    },
+    {
+      "name": "variant_colour",
+      "expected": "standard",
+      "verdict": "UNCERTAIN",
+      "observed": "no label text",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "variant \"standard\" not confirmed by any label text.",
+      "confidence": null
+    },
+    {
+      "name": "carton_count",
+      "expected": 1,
+      "observed": 1,
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "UNCERTAIN",
+      "reason": "Photos show 1 cartons but not all of them are visible, and there's no operator count.",
+      "confidence": null
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 1,
+      "observed": 0,
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "FAIL",
+      "confidence": "low",
+      "reason": "Photos show 0 units per carton, 1 ordered. No operator count to cross-check."
+    },
+    {
+      "name": "quantity",
+      "expected": 1,
+      "source": "derived",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "Total can't be derived: carton count or units per carton is uncertain.",
+      "confidence": null
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "FAIL",
+      "observed": [
+        "crushing",
+        "water",
+        "tears"
+      ],
+      "reason": "Photo 1 shows extensive tearing of the carton edges, crushing, and water stains on the bottom and inner paper material.",
+      "confidence": "medium"
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "No units are visible inside the carton.",
+      "confidence": null
+    },
+    {
+      "name": "components",
+      "expected": [
+        "lamp",
+        "usb cable"
+      ],
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "observed": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No unit is shown out of its packaging, so components can't be checked.",
+      "confidence": null
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "source": "model",
+      "photo_refs": [],
+      "reason": "Couldn't tell.",
+      "confidence": null
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "carton",
+      "ref": "eval/photos/nb12_box-inside-water.jpg",
+      "sha256": "098636d1359c2c95b8494a0bc61dfcda128028eef5d59b000912a59dc5728d65"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": null,
+    "units_per_carton_counted": null
+  },
+  "operator_id": "eval",
+  "captured_at": "2026-10-01T09:53:53.913Z",
+  "model": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "latency_ms": 3644,
+    "error": null,
+    "raw_output": "{\n  \"photo_quality\": \"good\",\n  \"photo_quality_reason\": \"The image is clear and adequately lit, showing the inside of the carton.\",\n  \"product_type\": \"cardboard carton\",\n  \"product_description\": \"An open cardboard carton showing severe damage and wet packing material inside.\",\n  \"product_photos\": [1],\n  \"colour_seen\": null,\n  \"label_text\": null,\n  \"cartons_visible\": 1,\n  \"cartons_fully_visible\": false,\n  \"units_in_open_carton\": 0,\n  \"open_carton_fully_visible\": true,\n  \"count_photos\": [1],\n  \"carton_damage\": \"damaged\",\n  \"carton_damage_types\": [\n    \"crushing\",\n    \"water\",\n    \"tears\"\n  ],\n  \"carton_damage_reason\": \"Photo 1 shows extensive tearing of the carton edges, crushing, and water stains on the bottom and inner paper material.\",\n  \"carton_damage_photos\": [1],\n  \"unit_damage\": \"unclear\",\n  \"unit_damage_types\": [],\n  \"unit_damage_reason\": \"No units are visible inside the carton.\",\n  \"unit_damage_photos\": [],\n  \"opened_unit_visible\": false,\n  \"parts_seen\": [],\n  \"defect_present\": \"unclear\",\n  \"defect_description\": \"\",\n  \"defect_photos\": []\n}"
+  },
+  "issues": [
+    {
+      "check": "units_per_carton",
+      "verdict": "FAIL",
+      "detail": "Photos show 0 units per carton, 1 ordered. No operator count to cross-check."
+    },
+    {
+      "check": "carton_damage",
+      "verdict": "FAIL",
+      "detail": "Photo 1 shows extensive tearing of the carton edges, crushing, and water stains on the bottom and inner paper material."
+    },
+    {
+      "check": "identity",
+      "verdict": "UNCERTAIN",
+      "detail": "Only packaging was seen (\"cardboard carton\"); the product itself isn't visible and no label names it."
+    },
+    {
+      "check": "variant_colour",
+      "verdict": "UNCERTAIN",
+      "detail": "variant \"standard\" not confirmed by any label text."
+    },
+    {
+      "check": "carton_count",
+      "verdict": "UNCERTAIN",
+      "detail": "Photos show 1 cartons but not all of them are visible, and there's no operator count."
+    },
+    {
+      "check": "quantity",
+      "verdict": "UNCERTAIN",
+      "detail": "Total can't be derived: carton count or units per carton is uncertain."
+    },
+    {
+      "check": "unit_damage",
+      "verdict": "UNCERTAIN",
+      "detail": "No units are visible inside the carton."
+    },
+    {
+      "check": "components",
+      "verdict": "UNCERTAIN",
+      "detail": "No unit is shown out of its packaging, so components can't be checked."
+    },
+    {
+      "check": "defects",
+      "verdict": "UNCERTAIN",
+      "detail": "Couldn't tell."
+    }
+  ],
+  "content_hash": "24825326723b9c68b0159eeed2bab39da5b9eedf4dd0992a85368e3c8fbed3ac"
+}

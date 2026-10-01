@@ -1,0 +1,203 @@
+{
+  "contract_version": "receiving-evidence/0.2",
+  "stage": "receiving",
+  "record_id": "RCV-EV10",
+  "unit_id": "EV10",
+  "org_id": "org_eval",
+  "status": "complete",
+  "overall": "EXCEPTION",
+  "expected": {
+    "unit_id": "EV10",
+    "org_id": "org_eval",
+    "po_number": "PO-EVAL",
+    "po_line": 1,
+    "supplier": "Eval set",
+    "sku": "SKU-TOWEL-BLU",
+    "asin": "n/a",
+    "product_title": "Cotton Bath Towel",
+    "spec_colour": "blue",
+    "spec_variant": "bath",
+    "spec_components": [
+      "towel"
+    ],
+    "cartons_ordered": 1,
+    "units_per_carton_ordered": 1,
+    "qty_ordered": 1
+  },
+  "summary": {
+    "cartons_received": 1,
+    "units_per_carton_counted": null,
+    "qty_received": null,
+    "identity_match": "uncertain",
+    "carton_damage": "crushing;water;tears",
+    "unit_damage": "uncertain",
+    "quality_flags": []
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-TOWEL-BLU · Cotton Bath Towel",
+      "verdict": "UNCERTAIN",
+      "observed": "unclear",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "The model couldn't tell what the product is.",
+      "confidence": null
+    },
+    {
+      "name": "variant_colour",
+      "expected": "blue · bath",
+      "verdict": "UNCERTAIN",
+      "observed": "colour not seen · 170421 X12X12",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "colour not determinable (seen: nothing); variant \"bath\" not confirmed by any label text.",
+      "confidence": null
+    },
+    {
+      "name": "carton_count",
+      "expected": 1,
+      "observed": 1,
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "PASS",
+      "confidence": "low",
+      "reason": "Photos show 1 cartons, 1 ordered. No operator count to cross-check."
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 1,
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No operator count and no reliable photo count for units per carton.",
+      "confidence": null
+    },
+    {
+      "name": "quantity",
+      "expected": 1,
+      "source": "derived",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "Total can't be derived: carton count or units per carton is uncertain.",
+      "confidence": null
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "FAIL",
+      "observed": [
+        "crushing",
+        "water",
+        "tears"
+      ],
+      "reason": "The carton shows severe crushing, a tear in the top panel, and dark staining indicative of water damage.",
+      "confidence": "medium"
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "Units are inside the closed carton and cannot be seen.",
+      "confidence": null
+    },
+    {
+      "name": "components",
+      "expected": [
+        "towel"
+      ],
+      "source": "model",
+      "photo_refs": [],
+      "observed": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No unit is shown out of its packaging, so components can't be checked.",
+      "confidence": null
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "UNCERTAIN",
+      "observed": "Cannot see product to determine defects.",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "Cannot see product to determine defects.",
+      "confidence": null
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "carton",
+      "ref": "eval/photos/nb07_box-water-stain-hole.jpg",
+      "sha256": "13e7f736780193a0d4cdf6b9981f7ee3e67015a6e714071d5fa55403b3e0d38b"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": null,
+    "units_per_carton_counted": null
+  },
+  "operator_id": "eval",
+  "captured_at": "2026-10-01T09:53:11.168Z",
+  "model": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "latency_ms": 3932,
+    "error": null,
+    "raw_output": "{\n  \"photo_quality\": \"good\",\n  \"photo_quality_reason\": \"The photo is clear and in focus, showing the carton from an overhead angle.\",\n  \"product_type\": \"unclear\",\n  \"product_description\": \"The product inside the carton is not visible.\",\n  \"product_photos\": [],\n  \"colour_seen\": null,\n  \"label_text\": \"170421 X12X12\",\n  \"cartons_visible\": 1,\n  \"cartons_fully_visible\": true,\n  \"units_in_open_carton\": null,\n  \"open_carton_fully_visible\": false,\n  \"count_photos\": [1],\n  \"carton_damage\": \"damaged\",\n  \"carton_damage_types\": [\n    \"crushing\",\n    \"water\",\n    \"tears\"\n  ],\n  \"carton_damage_reason\": \"The carton shows severe crushing, a tear in the top panel, and dark staining indicative of water damage.\",\n  \"carton_damage_photos\": [1],\n  \"unit_damage\": \"unclear\",\n  \"unit_damage_types\": [],\n  \"unit_damage_reason\": \"Units are inside the closed carton and cannot be seen.\",\n  \"unit_damage_photos\": [],\n  \"opened_unit_visible\": false,\n  \"parts_seen\": [],\n  \"defect_present\": \"unclear\",\n  \"defect_description\": \"Cannot see product to determine defects.\",\n  \"defect_photos\": []\n}"
+  },
+  "issues": [
+    {
+      "check": "carton_damage",
+      "verdict": "FAIL",
+      "detail": "The carton shows severe crushing, a tear in the top panel, and dark staining indicative of water damage."
+    },
+    {
+      "check": "identity",
+      "verdict": "UNCERTAIN",
+      "detail": "The model couldn't tell what the product is."
+    },
+    {
+      "check": "variant_colour",
+      "verdict": "UNCERTAIN",
+      "detail": "colour not determinable (seen: nothing); variant \"bath\" not confirmed by any label text."
+    },
+    {
+      "check": "units_per_carton",
+      "verdict": "UNCERTAIN",
+      "detail": "No operator count and no reliable photo count for units per carton."
+    },
+    {
+      "check": "quantity",
+      "verdict": "UNCERTAIN",
+      "detail": "Total can't be derived: carton count or units per carton is uncertain."
+    },
+    {
+      "check": "unit_damage",
+      "verdict": "UNCERTAIN",
+      "detail": "Units are inside the closed carton and cannot be seen."
+    },
+    {
+      "check": "components",
+      "verdict": "UNCERTAIN",
+      "detail": "No unit is shown out of its packaging, so components can't be checked."
+    },
+    {
+      "check": "defects",
+      "verdict": "UNCERTAIN",
+      "detail": "Cannot see product to determine defects."
+    }
+  ],
+  "content_hash": "0b89f0bb91bcc43846053edff53ea08bdce9eb31ced4e85b73656e4251e7bb57"
+}

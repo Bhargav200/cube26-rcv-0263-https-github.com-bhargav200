@@ -1,0 +1,186 @@
+{
+  "contract_version": "receiving-evidence/0.2",
+  "stage": "receiving",
+  "record_id": "RCV-EV02",
+  "unit_id": "EV02",
+  "org_id": "org_eval",
+  "status": "complete",
+  "overall": "REVIEW",
+  "expected": {
+    "unit_id": "EV02",
+    "org_id": "org_eval",
+    "po_number": "PO-EVAL",
+    "po_line": 1,
+    "supplier": "Eval set",
+    "sku": "SKU-MAGNUM-MINI6",
+    "asin": "n/a",
+    "product_title": "Magnum Mini Classic Ice Cream",
+    "spec_colour": "n/a",
+    "spec_variant": "330ml",
+    "spec_components": [
+      "ice cream bar"
+    ],
+    "cartons_ordered": 1,
+    "units_per_carton_ordered": 1,
+    "qty_ordered": 1
+  },
+  "summary": {
+    "cartons_received": null,
+    "units_per_carton_counted": null,
+    "qty_received": null,
+    "identity_match": "yes",
+    "carton_damage": "uncertain",
+    "unit_damage": "none",
+    "quality_flags": []
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-MAGNUM-MINI6 · Magnum Mini Classic Ice Cream",
+      "verdict": "PASS",
+      "observed": "ice cream multipack",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "Seen \"ice cream multipack\"; shares \"magnum, mini, classic, ice\" with the PO line.",
+      "confidence": "medium"
+    },
+    {
+      "name": "variant_colour",
+      "expected": "330ml",
+      "verdict": "PASS",
+      "observed": "6 mini CLASSIC x6 M MAGNUM YENI NET MIKTAR: 330 ml, 246 g E 2 PORSCHE Çubuklardaki şifreyi magnum.com.tr'ye gir çekilişe katıl. Çekilişte 30 adet 300.000TL değerinde Magnum Car kazanma şansı!",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "label shows \"330ml\".",
+      "confidence": "medium"
+    },
+    {
+      "name": "carton_count",
+      "expected": 1,
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No operator count and no reliable photo count for cartons.",
+      "confidence": null
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 1,
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No operator count and no reliable photo count for units per carton.",
+      "confidence": null
+    },
+    {
+      "name": "quantity",
+      "expected": 1,
+      "source": "derived",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "Total can't be derived: carton count or units per carton is uncertain.",
+      "confidence": null
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "No cartons are visible in the photo.",
+      "confidence": null
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "PASS",
+      "observed": "none",
+      "reason": "The packaging appears intact.",
+      "confidence": "medium"
+    },
+    {
+      "name": "components",
+      "expected": [
+        "ice cream bar"
+      ],
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "observed": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No unit is shown out of its packaging, so components can't be checked.",
+      "confidence": null
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "PASS",
+      "observed": "none",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "No visible defects on the packaging.",
+      "confidence": "medium"
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "unit",
+      "ref": "eval/photos/nb02_magnum-pack.jpg",
+      "sha256": "bd2aea6abeb3ebeec9af2907f206c08a20cfbc2390ffdb4670088738da0de09d"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": null,
+    "units_per_carton_counted": null
+  },
+  "operator_id": "eval",
+  "captured_at": "2026-10-01T09:51:29.778Z",
+  "model": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "latency_ms": 3738,
+    "error": null,
+    "raw_output": "{\n  \"photo_quality\": \"good\",\n  \"photo_quality_reason\": \"The image is clear and focused.\",\n  \"product_type\": \"ice cream multipack\",\n  \"product_description\": \"A gold-colored flexible packaging bag for a multipack of Magnum mini classic ice cream bars.\",\n  \"product_photos\": [\n    1\n  ],\n  \"colour_seen\": \"gold\",\n  \"label_text\": \"6 mini CLASSIC x6 M MAGNUM YENI NET MIKTAR: 330 ml, 246 g E 2 PORSCHE Çubuklardaki şifreyi magnum.com.tr'ye gir çekilişe katıl. Çekilişte 30 adet 300.000TL değerinde Magnum Car kazanma şansı!\",\n  \"cartons_visible\": null,\n  \"cartons_fully_visible\": false,\n  \"units_in_open_carton\": null,\n  \"open_carton_fully_visible\": false,\n  \"count_photos\": [],\n  \"carton_damage\": \"unclear\",\n  \"carton_damage_types\": [],\n  \"carton_damage_reason\": \"No cartons are visible in the photo.\",\n  \"carton_damage_photos\": [],\n  \"unit_damage\": \"none\",\n  \"unit_damage_types\": [],\n  \"unit_damage_reason\": \"The packaging appears intact.\",\n  \"unit_damage_photos\": [],\n  \"opened_unit_visible\": false,\n  \"parts_seen\": [],\n  \"defect_present\": \"no\",\n  \"defect_description\": \"No visible defects on the packaging.\",\n  \"defect_photos\": []\n}"
+  },
+  "issues": [
+    {
+      "check": "carton_count",
+      "verdict": "UNCERTAIN",
+      "detail": "No operator count and no reliable photo count for cartons."
+    },
+    {
+      "check": "units_per_carton",
+      "verdict": "UNCERTAIN",
+      "detail": "No operator count and no reliable photo count for units per carton."
+    },
+    {
+      "check": "quantity",
+      "verdict": "UNCERTAIN",
+      "detail": "Total can't be derived: carton count or units per carton is uncertain."
+    },
+    {
+      "check": "carton_damage",
+      "verdict": "UNCERTAIN",
+      "detail": "No cartons are visible in the photo."
+    },
+    {
+      "check": "components",
+      "verdict": "UNCERTAIN",
+      "detail": "No unit is shown out of its packaging, so components can't be checked."
+    }
+  ],
+  "content_hash": "7c1a3d5fcf9902ff811fc010c51a49ecc7e800fe452c8fe76d1d86cfda31fe1c"
+}

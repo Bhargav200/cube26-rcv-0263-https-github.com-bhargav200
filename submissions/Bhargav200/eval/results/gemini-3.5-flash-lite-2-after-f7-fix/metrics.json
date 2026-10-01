@@ -1,0 +1,340 @@
+{
+  "meta": {
+    "run": "gemini-3.5-flash-lite-2-after-f7-fix",
+    "scored_at": "2026-10-01T09:54:14.565Z",
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "contract_version": "receiving-evidence/0.2",
+    "code_commit": "7632029",
+    "cases": 16,
+    "scored_cases": 16,
+    "labellers": 1,
+    "pending": 0,
+    "retried_after_pending": 0,
+    "latency_s": {
+      "median": 3.738,
+      "p90": 5.294,
+      "max": 17.273
+    }
+  },
+  "perCheck": [
+    {
+      "check": "identity",
+      "n": 16,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 3,
+      "abstain_on_pass": 0,
+      "abstain_on_fail": 0,
+      "correct_abstain": 11,
+      "forced": 1,
+      "decided_accuracy": 1,
+      "coverage": 1,
+      "fail_precision": 1,
+      "fail_recall": 1
+    },
+    {
+      "check": "variant_colour",
+      "n": 16,
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "tn": 2,
+      "abstain_on_pass": 0,
+      "abstain_on_fail": 0,
+      "correct_abstain": 11,
+      "forced": 1,
+      "decided_accuracy": 1,
+      "coverage": 1,
+      "fail_precision": 1,
+      "fail_recall": 1
+    },
+    {
+      "check": "carton_count",
+      "n": 16,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 4,
+      "abstain_on_pass": 1,
+      "abstain_on_fail": 0,
+      "correct_abstain": 9,
+      "forced": 2,
+      "decided_accuracy": 1,
+      "coverage": 0.8,
+      "fail_precision": null,
+      "fail_recall": null
+    },
+    {
+      "check": "units_per_carton",
+      "n": 16,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 1,
+      "abstain_on_pass": 0,
+      "abstain_on_fail": 0,
+      "correct_abstain": 12,
+      "forced": 2,
+      "decided_accuracy": 1,
+      "coverage": 1,
+      "fail_precision": 1,
+      "fail_recall": 1
+    },
+    {
+      "check": "quantity",
+      "n": 16,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 0,
+      "abstain_on_pass": 0,
+      "abstain_on_fail": 0,
+      "correct_abstain": 15,
+      "forced": 1,
+      "decided_accuracy": null,
+      "coverage": null,
+      "fail_precision": null,
+      "fail_recall": null
+    },
+    {
+      "check": "carton_damage",
+      "n": 16,
+      "tp": 9,
+      "fp": 0,
+      "fn": 0,
+      "tn": 3,
+      "abstain_on_pass": 0,
+      "abstain_on_fail": 0,
+      "correct_abstain": 3,
+      "forced": 1,
+      "decided_accuracy": 1,
+      "coverage": 1,
+      "fail_precision": 1,
+      "fail_recall": 1
+    },
+    {
+      "check": "unit_damage",
+      "n": 16,
+      "tp": 0,
+      "fp": 0,
+      "fn": 2,
+      "tn": 3,
+      "abstain_on_pass": 1,
+      "abstain_on_fail": 1,
+      "correct_abstain": 9,
+      "forced": 0,
+      "decided_accuracy": 0.6,
+      "coverage": 0.7142857142857143,
+      "fail_precision": null,
+      "fail_recall": 0
+    },
+    {
+      "check": "components",
+      "n": 16,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "tn": 0,
+      "abstain_on_pass": 0,
+      "abstain_on_fail": 0,
+      "correct_abstain": 16,
+      "forced": 0,
+      "decided_accuracy": null,
+      "coverage": null,
+      "fail_precision": null,
+      "fail_recall": null
+    },
+    {
+      "check": "defects",
+      "n": 16,
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "tn": 3,
+      "abstain_on_pass": 0,
+      "abstain_on_fail": 0,
+      "correct_abstain": 9,
+      "forced": 3,
+      "decided_accuracy": 1,
+      "coverage": 1,
+      "fail_precision": 1,
+      "fail_recall": 1
+    }
+  ],
+  "overall": {
+    "n": 16,
+    "exact": 14,
+    "masked_failures": 0,
+    "confusion": {
+      "ACCEPT": {
+        "ACCEPT": 0,
+        "EXCEPTION": 0,
+        "REVIEW": 0
+      },
+      "EXCEPTION": {
+        "ACCEPT": 0,
+        "EXCEPTION": 13,
+        "REVIEW": 1
+      },
+      "REVIEW": {
+        "ACCEPT": 0,
+        "EXCEPTION": 1,
+        "REVIEW": 1
+      }
+    }
+  },
+  "byConfidence": {
+    "high": {
+      "n": 0,
+      "correct": 0
+    },
+    "medium": {
+      "n": 29,
+      "correct": 27
+    },
+    "low": {
+      "n": 6,
+      "correct": 6
+    },
+    "none": {
+      "n": 0,
+      "correct": 0
+    }
+  },
+  "agreement": null,
+  "dropped": [],
+  "misses": [
+    {
+      "case_id": "EV11",
+      "check": "identity",
+      "label": "UNCERTAIN",
+      "agent": "FAIL",
+      "kind": "forced",
+      "reason": "Seen \"pet supplies\" (A cardboard shipping carton with blue and brown branding.); no product word in common with \"Dry Dog Food 5kg\"."
+    },
+    {
+      "case_id": "EV05",
+      "check": "variant_colour",
+      "label": "UNCERTAIN",
+      "agent": "FAIL",
+      "kind": "forced",
+      "reason": "wrong colour: \"brown\", spec is black; variant \"standard\" not confirmed by any label text."
+    },
+    {
+      "case_id": "EV07",
+      "check": "carton_count",
+      "label": "UNCERTAIN",
+      "agent": "PASS",
+      "kind": "forced",
+      "reason": "Photos show 1 cartons, 1 ordered. No operator count to cross-check."
+    },
+    {
+      "case_id": "EV09",
+      "check": "carton_count",
+      "label": "UNCERTAIN",
+      "agent": "PASS",
+      "kind": "forced",
+      "reason": "Photos show 1 cartons, 1 ordered. No operator count to cross-check."
+    },
+    {
+      "case_id": "EV12",
+      "check": "carton_count",
+      "label": "PASS",
+      "agent": "UNCERTAIN",
+      "kind": "abstain",
+      "reason": "Photos show 1 cartons but not all of them are visible, and there's no operator count."
+    },
+    {
+      "case_id": "EV13",
+      "check": "units_per_carton",
+      "label": "UNCERTAIN",
+      "agent": "FAIL",
+      "kind": "forced",
+      "reason": "Photos show 19 units per carton, 20 ordered. No operator count to cross-check."
+    },
+    {
+      "case_id": "EV14",
+      "check": "units_per_carton",
+      "label": "UNCERTAIN",
+      "agent": "FAIL",
+      "kind": "forced",
+      "reason": "Photos show 0 units per carton, 1 ordered. No operator count to cross-check."
+    },
+    {
+      "case_id": "EV07",
+      "check": "quantity",
+      "label": "UNCERTAIN",
+      "agent": "PASS",
+      "kind": "forced",
+      "reason": "1 cartons × 9 units = 9, 9 ordered. Assumes every carton holds the same count as the one that was opened."
+    },
+    {
+      "case_id": "EV01",
+      "check": "carton_damage",
+      "label": "UNCERTAIN",
+      "agent": "FAIL",
+      "kind": "forced",
+      "reason": "The cereal box is torn open and crushed on the front face."
+    },
+    {
+      "case_id": "EV01",
+      "check": "unit_damage",
+      "label": "FAIL",
+      "agent": "UNCERTAIN",
+      "kind": "abstain",
+      "reason": "Individual units inside are not fully visible to assess damage."
+    },
+    {
+      "case_id": "EV03",
+      "check": "unit_damage",
+      "label": "PASS",
+      "agent": "UNCERTAIN",
+      "kind": "abstain",
+      "reason": "not applicable"
+    },
+    {
+      "case_id": "EV07",
+      "check": "unit_damage",
+      "label": "FAIL",
+      "agent": "PASS",
+      "kind": "FN",
+      "reason": "No damage visible on the inner units."
+    },
+    {
+      "case_id": "EV08",
+      "check": "unit_damage",
+      "label": "FAIL",
+      "agent": "PASS",
+      "kind": "FN",
+      "reason": "No damage visible on the units."
+    },
+    {
+      "case_id": "EV07",
+      "check": "defects",
+      "label": "UNCERTAIN",
+      "agent": "PASS",
+      "kind": "forced",
+      "reason": "No obvious defects observed."
+    },
+    {
+      "case_id": "EV08",
+      "check": "defects",
+      "label": "UNCERTAIN",
+      "agent": "PASS",
+      "kind": "forced",
+      "reason": "No defects observed."
+    },
+    {
+      "case_id": "EV13",
+      "check": "defects",
+      "label": "UNCERTAIN",
+      "agent": "PASS",
+      "kind": "forced",
+      "reason": "No obvious defects seen."
+    }
+  ],
+  "unlabelled": []
+}

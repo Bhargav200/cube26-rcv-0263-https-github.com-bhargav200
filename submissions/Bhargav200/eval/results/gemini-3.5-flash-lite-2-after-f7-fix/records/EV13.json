@@ -1,0 +1,195 @@
+{
+  "contract_version": "receiving-evidence/0.2",
+  "stage": "receiving",
+  "record_id": "RCV-EV13",
+  "unit_id": "EV13",
+  "org_id": "org_eval",
+  "status": "complete",
+  "overall": "EXCEPTION",
+  "expected": {
+    "unit_id": "EV13",
+    "org_id": "org_eval",
+    "po_number": "PO-EVAL",
+    "po_line": 1,
+    "supplier": "Eval set",
+    "sku": "SKU-SMARTPLUG",
+    "asin": "n/a",
+    "product_title": "Smart Plug",
+    "spec_colour": "white",
+    "spec_variant": "standard",
+    "spec_components": [
+      "plug"
+    ],
+    "cartons_ordered": 1,
+    "units_per_carton_ordered": 20,
+    "qty_ordered": 20
+  },
+  "summary": {
+    "cartons_received": null,
+    "units_per_carton_counted": 19,
+    "qty_received": null,
+    "identity_match": "uncertain",
+    "carton_damage": "none",
+    "unit_damage": "none",
+    "quality_flags": []
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-SMARTPLUG · Smart Plug",
+      "verdict": "UNCERTAIN",
+      "observed": "boxed items",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "Only packaging was seen (\"boxed items\"); the product itself isn't visible and no label names it.",
+      "confidence": null
+    },
+    {
+      "name": "variant_colour",
+      "expected": "white · standard",
+      "verdict": "UNCERTAIN",
+      "observed": "white · no label text",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "colour \"white\" matches white; variant \"standard\" not confirmed by any label text.",
+      "confidence": null
+    },
+    {
+      "name": "carton_count",
+      "expected": 1,
+      "observed": 1,
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "UNCERTAIN",
+      "reason": "Photos show 1 cartons but not all of them are visible, and there's no operator count.",
+      "confidence": null
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 20,
+      "observed": 19,
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "verdict": "FAIL",
+      "confidence": "low",
+      "reason": "Photos show 19 units per carton, 20 ordered. No operator count to cross-check."
+    },
+    {
+      "name": "quantity",
+      "expected": 20,
+      "source": "derived",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "Total can't be derived: carton count or units per carton is uncertain.",
+      "confidence": null
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "PASS",
+      "observed": "none",
+      "reason": "The master carton flaps and walls appear intact without visible crushing, water damage, or tears.",
+      "confidence": "medium"
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "PASS",
+      "observed": "none",
+      "reason": "The smaller white boxes packed inside show no visible signs of damage.",
+      "confidence": "medium"
+    },
+    {
+      "name": "components",
+      "expected": [
+        "plug"
+      ],
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "observed": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No unit is shown out of its packaging, so components can't be checked.",
+      "confidence": null
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "PASS",
+      "observed": "none",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "No obvious defects seen.",
+      "confidence": "medium"
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "carton",
+      "ref": "eval/photos/nb11_open-carton-white-boxes.jpg",
+      "sha256": "343d3e73914ea3e1921b467fb2821daab4633122dfb62d76d9856564d5e8c56d"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": null,
+    "units_per_carton_counted": null
+  },
+  "operator_id": "eval",
+  "captured_at": "2026-10-01T09:53:43.110Z",
+  "model": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "latency_ms": 3234,
+    "error": null,
+    "raw_output": "{\n  \"photo_quality\": \"good\",\n  \"photo_quality_reason\": \"The image is clear and adequately lit, showing the contents of the open carton.\",\n  \"product_type\": \"boxed items\",\n  \"product_description\": \"An open cardboard master carton containing multiple smaller white rectangular boxes packed tightly inside.\",\n  \"product_photos\": [1],\n  \"colour_seen\": \"white\",\n  \"label_text\": null,\n  \"cartons_visible\": 1,\n  \"cartons_fully_visible\": false,\n  \"units_in_open_carton\": 19,\n  \"open_carton_fully_visible\": true,\n  \"count_photos\": [1],\n  \"carton_damage\": \"none\",\n  \"carton_damage_types\": [],\n  \"carton_damage_reason\": \"The master carton flaps and walls appear intact without visible crushing, water damage, or tears.\",\n  \"carton_damage_photos\": [],\n  \"unit_damage\": \"none\",\n  \"unit_damage_types\": [],\n  \"unit_damage_reason\": \"The smaller white boxes packed inside show no visible signs of damage.\",\n  \"unit_damage_photos\": [],\n  \"opened_unit_visible\": false,\n  \"parts_seen\": [],\n  \"defect_present\": \"no\",\n  \"defect_description\": \"\",\n  \"defect_photos\": []\n}"
+  },
+  "issues": [
+    {
+      "check": "units_per_carton",
+      "verdict": "FAIL",
+      "detail": "Photos show 19 units per carton, 20 ordered. No operator count to cross-check."
+    },
+    {
+      "check": "identity",
+      "verdict": "UNCERTAIN",
+      "detail": "Only packaging was seen (\"boxed items\"); the product itself isn't visible and no label names it."
+    },
+    {
+      "check": "variant_colour",
+      "verdict": "UNCERTAIN",
+      "detail": "colour \"white\" matches white; variant \"standard\" not confirmed by any label text."
+    },
+    {
+      "check": "carton_count",
+      "verdict": "UNCERTAIN",
+      "detail": "Photos show 1 cartons but not all of them are visible, and there's no operator count."
+    },
+    {
+      "check": "quantity",
+      "verdict": "UNCERTAIN",
+      "detail": "Total can't be derived: carton count or units per carton is uncertain."
+    },
+    {
+      "check": "components",
+      "verdict": "UNCERTAIN",
+      "detail": "No unit is shown out of its packaging, so components can't be checked."
+    }
+  ],
+  "content_hash": "80e4332d212a5b01053731c39c262bb0e4446a6bf77f94520a96053909a4ef18"
+}

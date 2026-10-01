@@ -1,0 +1,193 @@
+{
+  "contract_version": "receiving-evidence/0.2",
+  "stage": "receiving",
+  "record_id": "RCV-EV04",
+  "unit_id": "EV04",
+  "org_id": "org_eval",
+  "status": "complete",
+  "overall": "EXCEPTION",
+  "expected": {
+    "unit_id": "EV04",
+    "org_id": "org_eval",
+    "po_number": "PO-EVAL",
+    "po_line": 1,
+    "supplier": "Eval set",
+    "sku": "SKU-MAGNUM-MINI6-500",
+    "asin": "n/a",
+    "product_title": "Magnum Mini Classic Ice Cream",
+    "spec_colour": "n/a",
+    "spec_variant": "500ml",
+    "spec_components": [
+      "ice cream bar"
+    ],
+    "cartons_ordered": 1,
+    "units_per_carton_ordered": 1,
+    "qty_ordered": 1
+  },
+  "summary": {
+    "cartons_received": null,
+    "units_per_carton_counted": null,
+    "qty_received": null,
+    "identity_match": "yes",
+    "carton_damage": "uncertain",
+    "unit_damage": "none",
+    "quality_flags": [
+      "wrong_variant"
+    ]
+  },
+  "checks": [
+    {
+      "name": "identity",
+      "expected": "SKU-MAGNUM-MINI6-500 · Magnum Mini Classic Ice Cream",
+      "verdict": "PASS",
+      "observed": "ice cream",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "Seen \"ice cream\"; shares \"magnum, mini, classic, ice\" with the PO line.",
+      "confidence": "medium"
+    },
+    {
+      "name": "variant_colour",
+      "expected": "500ml",
+      "verdict": "FAIL",
+      "observed": "6 mini CLASSIC x6 MAGNUM YENİ NET MİKTAR: 330 ml, 246 g E 2 PORSCHE Çubuklardaki şifreyi magnum.com.tr ye y... şikayetvar",
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "reason": "wrong variant: label reads \"6 mini CLASSIC x6 MAGNUM YENİ NET MİKTAR: 330 ml, 246 g E 2 PORSCHE Çubuklardaki şifreyi magnum.com.tr ye y... şikayetvar\", spec is 500ml.",
+      "confidence": "medium"
+    },
+    {
+      "name": "carton_count",
+      "expected": 1,
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No operator count and no reliable photo count for cartons.",
+      "confidence": null
+    },
+    {
+      "name": "units_per_carton",
+      "expected": 1,
+      "observed": null,
+      "source": "none",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No operator count and no reliable photo count for units per carton.",
+      "confidence": null
+    },
+    {
+      "name": "quantity",
+      "expected": 1,
+      "source": "derived",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "Total can't be derived: carton count or units per carton is uncertain.",
+      "confidence": null
+    },
+    {
+      "name": "carton_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "UNCERTAIN",
+      "observed": null,
+      "reason": "No carton is visible.",
+      "confidence": null
+    },
+    {
+      "name": "unit_damage",
+      "expected": "none",
+      "source": "model",
+      "photo_refs": [],
+      "verdict": "PASS",
+      "observed": "none",
+      "reason": "The unit packaging is intact with no visible damage.",
+      "confidence": "medium"
+    },
+    {
+      "name": "components",
+      "expected": [
+        "ice cream bar"
+      ],
+      "source": "model",
+      "photo_refs": [
+        1
+      ],
+      "observed": [],
+      "verdict": "UNCERTAIN",
+      "reason": "No unit is shown out of its packaging, so components can't be checked.",
+      "confidence": null
+    },
+    {
+      "name": "defects",
+      "expected": "none",
+      "verdict": "PASS",
+      "observed": "none",
+      "source": "model",
+      "photo_refs": [],
+      "reason": "No obvious defects seen.",
+      "confidence": "medium"
+    }
+  ],
+  "photos": [
+    {
+      "index": 1,
+      "role": "unit",
+      "ref": "eval/photos/nb02_magnum-pack.jpg",
+      "sha256": "bd2aea6abeb3ebeec9af2907f206c08a20cfbc2390ffdb4670088738da0de09d"
+    }
+  ],
+  "operator_counts": {
+    "cartons_received": null,
+    "units_per_carton_counted": null
+  },
+  "operator_id": "eval",
+  "captured_at": "2026-10-01T09:52:04.924Z",
+  "model": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "prompt_version": "rcv-prompt/0.2-blind",
+    "latency_ms": 3586,
+    "error": null,
+    "raw_output": "{\n  \"photo_quality\": \"good\",\n  \"photo_quality_reason\": \"The image is clear and legible.\",\n  \"product_type\": \"ice cream\",\n  \"product_description\": \"A package of Magnum Mini Classic ice cream bars.\",\n  \"product_photos\": [1],\n  \"colour_seen\": \"brown\",\n  \"label_text\": \"6 mini CLASSIC x6 MAGNUM YENİ NET MİKTAR: 330 ml, 246 g E 2 PORSCHE Çubuklardaki şifreyi magnum.com.tr ye y... şikayetvar\",\n  \"cartons_visible\": null,\n  \"cartons_fully_visible\": false,\n  \"units_in_open_carton\": null,\n  \"open_carton_fully_visible\": false,\n  \"count_photos\": [],\n  \"carton_damage\": \"unclear\",\n  \"carton_damage_types\": [],\n  \"carton_damage_reason\": \"No carton is visible.\",\n  \"carton_damage_photos\": [],\n  \"unit_damage\": \"none\",\n  \"unit_damage_types\": [],\n  \"unit_damage_reason\": \"The unit packaging is intact with no visible damage.\",\n  \"unit_damage_photos\": [],\n  \"opened_unit_visible\": false,\n  \"parts_seen\": [],\n  \"defect_present\": \"no\",\n  \"defect_description\": \"\",\n  \"defect_photos\": []\n}"
+  },
+  "issues": [
+    {
+      "check": "variant_colour",
+      "verdict": "FAIL",
+      "detail": "wrong variant: label reads \"6 mini CLASSIC x6 MAGNUM YENİ NET MİKTAR: 330 ml, 246 g E 2 PORSCHE Çubuklardaki şifreyi magnum.com.tr ye y... şikayetvar\", spec is 500ml."
+    },
+    {
+      "check": "carton_count",
+      "verdict": "UNCERTAIN",
+      "detail": "No operator count and no reliable photo count for cartons."
+    },
+    {
+      "check": "units_per_carton",
+      "verdict": "UNCERTAIN",
+      "detail": "No operator count and no reliable photo count for units per carton."
+    },
+    {
+      "check": "quantity",
+      "verdict": "UNCERTAIN",
+      "detail": "Total can't be derived: carton count or units per carton is uncertain."
+    },
+    {
+      "check": "carton_damage",
+      "verdict": "UNCERTAIN",
+      "detail": "No carton is visible."
+    },
+    {
+      "check": "components",
+      "verdict": "UNCERTAIN",
+      "detail": "No unit is shown out of its packaging, so components can't be checked."
+    }
+  ],
+  "content_hash": "80bed24b7ad1c6800e9e1da9618db55fd84bba44925af0f49811e25c75d08b99"
+}
